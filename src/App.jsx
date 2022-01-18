@@ -3,12 +3,11 @@ import { useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllTopics, getAllTopicsDetails } from './features/actions'
+import TopicCard from './components/TopicCard/TopicCard';
 
 function App() {
 
   const { allTopics, allTopicsDetails } = useSelector((state) => state)
-  console.log('allTopicsDetails:', allTopicsDetails)
-  console.log('allTopics:', allTopics)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      HII
+      <TopicCard />
     </div>
   );
 }
