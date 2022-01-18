@@ -1,6 +1,11 @@
-import { GET_ALL_TOPICS, GET_ALL_TOPICS_DETAILS } from './actionTypes';
+import {
+    GET_ALL_TOPICS,
+    GET_ALL_TOPICS_DETAILS,
+    ERROR_MESSAGE,
+} from './actionTypes';
 
 const init = {
+    errorMessage: null,
     allTopics: [],
     allTopicsDetails: [],
 };
@@ -17,6 +22,12 @@ export const reducer = (state = init, { type, payload }) => {
             return {
                 ...state,
                 allTopicsDetails: payload,
+            };
+
+        case ERROR_MESSAGE:
+            return {
+                ...state,
+                errorMessage: payload,
             };
 
         default:
