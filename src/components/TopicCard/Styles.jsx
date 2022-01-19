@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import { borderLeft } from '@mui/system';
 
 const useStyles = makeStyles({
     cardStyle: {
@@ -7,7 +8,7 @@ const useStyles = makeStyles({
         border: '1px solid black',
         color: 'white',
         width: 'calc(33.333333% - 20px)',
-        height: 'calc(20% - 20px)',
+        height: '60vh',
         marginLeft: '10px',
         marginRight: '10px',
         marginBottom: '30px',
@@ -23,8 +24,8 @@ const useStyles = makeStyles({
     backgroundImage: {
         zIndex: '0',
         position: 'absolute',
-        width: '380px',
-        height: '410px',
+        width: '100%',
+        height: '100%',
         backgroundImage: (props) => `url(${props.card_img})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -36,11 +37,11 @@ const useStyles = makeStyles({
     },
 
     playButton: {
-        top: '5.5%',
-        left: '71%',
+        top: '33%',
+        left: '69%',
         width: '80px',
         height: '80px',
-        zIndex: '1',
+        zIndex: '2',
 
         boxShadow: '1px 1px 5px grey',
 
@@ -53,13 +54,26 @@ const useStyles = makeStyles({
     },
 
     slantedLine: {
-        backgroundColor: 'white',
-        width: '120%',
+        // backgroundColor: 'white',
+
+        borderBottom: '110px solid white',
+        borderLeft: '800px solid transparent',
+        zIndex: '0',
+
+        /* borderColor: 'yellow blue red green',
+        borderStyle: 'solid',
+        borderWidth: '0px 0px 200px 500px',
+        height: '0px',
+        width: '0px',
+        marginBottom: '-20%',
+        zIndex: '2', */
+
+        /* width: '120%',
         marginLeft: '-10%',
         zIndex: '0',
-        marginBottom: '-26px',
-        paddingBottom: '33px',
-        transform: 'rotateZ(-8deg)',
+        marginBottom: '-20%',
+        paddingBottom: '150px',
+        transform: 'rotateZ(-8deg)', */
     },
 
     topic: {
