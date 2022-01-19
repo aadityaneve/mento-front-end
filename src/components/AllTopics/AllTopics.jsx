@@ -39,6 +39,8 @@ const AllTopics = () => {
     const dispatch = useDispatch();
 
     const root = {
+        width: '87%',
+        margin: 'auto',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
