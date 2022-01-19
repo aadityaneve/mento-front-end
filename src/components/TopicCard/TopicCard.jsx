@@ -28,14 +28,16 @@ const TopicCard = ({
                 {heading}
             </Typography>
             <Box className={classes.cardDetails}>
-                <Box>PHOTO</Box>
+                <Box className={classes.mentorPhoto}></Box>
                 <Box className={classes.mentorDetails}>
-                    <Typography>{name}</Typography>
-                    <Typography>{desg}</Typography>
+                    <Typography className={classes.mentorName}>
+                        {name}
+                    </Typography>
+                    <Typography className={classes.mentorDesg}>{desg}</Typography>
                 </Box>
                 <Box className={classes.videoCount}>
-                    <Typography>{total_count}</Typography>
-                    <Typography>VIDEOS</Typography>
+                    <Typography className={classes.count}>{total_count}</Typography>
+                    <Typography className={classes.countText}>VIDEOS</Typography>
                 </Box>
             </Box>
         </Card>

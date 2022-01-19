@@ -6,8 +6,11 @@ const useStyles = makeStyles({
 
         border: '1px solid black',
         color: 'white',
-        width: '380px',
-        height: '410px',
+        width: 'calc(33.333333% - 20px)',
+        height: 'calc(20% - 20px)',
+        marginLeft: '10px',
+        marginRight: '10px',
+        marginBottom: '30px',
         borderRadius: '12px',
         boxSizing: 'border-box',
         overflow: 'hidden',
@@ -64,6 +67,9 @@ const useStyles = makeStyles({
         color: 'black',
         zIndex: '1',
 
+        fontSize: '1.2em',
+        fontWeight: 'bold',
+
         padding: '25px',
     },
 
@@ -75,7 +81,17 @@ const useStyles = makeStyles({
 
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
+    },
+
+    mentorPhoto: {
+        backgroundImage: (props) => `url(${props.card_img})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '0 0',
+        borderRadius: '100%',
+        width: '15%',
+        height: '45px',
     },
 
     mentorDetails: {
@@ -85,10 +101,40 @@ const useStyles = makeStyles({
         alignItems: 'flex-start',
     },
 
+    mentorName: {
+        fontSize: '0.9em',
+        fontWeight: 'bold',
+        alignItems: 'flex-start',
+    },
+
+    mentorDesg: {
+        fontSize: '0.5454545455em',
+        color: '#999999',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        width: 'calc(100% - 20px)',
+        alignItems: 'flex-start',
+    },
+
     videoCount: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-evenly',
+        width: '15%',
+    },
+
+    count: {
+        fontSize: '0.9em',
+        fontWeight: 'bold',
+    },
+
+    countText: {
+        fontSize: '0.5454545455em',
+        color: '#999999',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
     },
 });
 

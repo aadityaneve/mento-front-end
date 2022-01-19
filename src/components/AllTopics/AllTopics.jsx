@@ -45,6 +45,8 @@ const AllTopics = () => {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         gap: '15px',
+
+        color: 'white',
     };
 
     const topicsBox = {
