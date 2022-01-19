@@ -1,8 +1,11 @@
 import React from 'react';
-
+import "../Styles/Navstyles.css";
 const Navbar = () => {
   return <div>
-      <h1 style={{color: 'white'}}>Navbar</h1>
+      <div className="navbar">
+  hi
+      </div>
+      
   </div>;
 };
 
