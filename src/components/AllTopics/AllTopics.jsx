@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -34,6 +34,8 @@ const AllTopics = () => {
         'PERSONAL FINANCE',
     ];
 
+    const [displayTopic, setDisplayTopic] = useState('All Videos');
+
     const { allTopics, allTopicsDetails } = useSelector((state) => state);
     console.log('allTopics:', allTopics);
     const dispatch = useDispatch();
@@ -42,52 +44,113 @@ const AllTopics = () => {
         width: '87%',
         margin: 'auto',
         display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'space-evenly',
         gap: '15px',
 
-        color: 'white',
+        color: '#e8e7e7',
     };
 
     const topicsBox = {
-        border: '1px solid black',
+        marginTop: '7px',
         display: 'flex',
         flexDirection: 'column',
-        // justifyContent: 'space-evenly',
         gap: '12px',
+    };
+
+    const cardsBox = {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+    };
+
+    const verticalAnimatedLine = {
+        color: 'yellow',
+        '&:hover': {
+            content: '',
+            position: 'absolute',
+            height: '0',
+            bottom: '-1px',
+            width: '4px',
+            background: '#f36f21',
+            transition: 'all 0.3s ease',
+        },
+        /* '&:after': {
+            boxSizing: 'border-box',
+        }, */
     };
 
     const singleTopic = {
         cursor: 'pointer',
+
+        transition: 'all 0.5s',
+        '&:hover': {
+            transform: 'scale(1.1)',
+        },
+    };
+
+    const displayTopicHeading = {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+
+        color: '#DD6721',
+
+        marginLeft: '2%',
     };
 
     const allCards = {
-        border: '1px solid black',
         display: 'flex',
-        flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
+        // justifyContent: 'space-evenly',
+        // alignItems: 'center',
+
+        '@media(maxWidth: 1150px)': {
+            // flexBasis: 'auto',
+            // flexBasis: '2',
+        },
+    };
+
+    const titleCase = (str) => {
+        var splitStr = str.toLowerCase().split(' ');
+        for (var i = 0; i < splitStr.length; i++) {
+            splitStr[i] =
+                splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+        }
+        return splitStr.join(' ');
     };
 
     return (
         <Box sx={root}>
             <Box sx={topicsBox}>
                 {listOfTopics.map((topic, i) => (
-                    <Typography
-                        key={i}
-                        sx={singleTopic}
-                        variant='h6'
-                        component='h6'
-                        align='left'
-                    >
-                        {topic}
-                    </Typography>
+                    <>
+                        <Typography
+                            onClick={() => setDisplayTopic(topic)}
+                            key={i}
+                            sx={singleTopic}
+                            variant='h7'
+                            component='h7'
+                            align='left'
+                        >
+                            <span className={verticalAnimatedLine}></span>
+                            {topic}
+                        </Typography>
+                    </>
                 ))}
             </Box>
-            <Box sx={allCards}>
-                {allTopics.map((topic) => (
-                    <TopicCard key={topic._id} topic={topic} />
-                ))}
+            <Box sx={cardsBox}>
+                <Typography
+                    sx={displayTopicHeading}
+                    variant='h5'
+                    component='h5'
+                >
+                    {titleCase(displayTopic)}
+                </Typography>
+                <Box sx={allCards}>
+                    {allTopics.map((topic) => (
+                        <TopicCard key={topic._id} topic={topic} />
+                    ))}
+                </Box>
             </Box>
         </Box>
     );
