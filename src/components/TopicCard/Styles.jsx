@@ -7,7 +7,7 @@ const useStyles = makeStyles({
 
         border: '1px solid black',
         color: 'white',
-        width: 'calc(33.333333% - 20px)',
+        width: '280px', // calc(33.333333% - 20px)
         height: '60vh',
         marginLeft: '10px',
         marginRight: '10px',
@@ -19,6 +19,13 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
+
+        transition: 'all 1s',
+        '&:hover': {
+            '& $backgroundImage': {
+                transform: 'scale(1.2)',
+            },
+        },
     },
 
     backgroundImage: {
@@ -104,7 +111,7 @@ const useStyles = makeStyles({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '0 0',
         borderRadius: '100%',
-        width: '15%',
+        width: '45px',
         height: '45px',
     },
 

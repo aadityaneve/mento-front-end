@@ -13,7 +13,7 @@ const TopicCard = ({
     const classes = useStyles(props);
 
     return (
-        <Card className={classes.cardStyle}>
+        <Box className={classes.cardStyle}>
             <Box className={classes.backgroundImage}></Box>
             <Button className={classes.playButton}>
                 <PlayArrowIcon color='white' fontSize='large' />
@@ -33,14 +33,20 @@ const TopicCard = ({
                     <Typography className={classes.mentorName}>
                         {name}
                     </Typography>
-                    <Typography className={classes.mentorDesg}>{desg}</Typography>
+                    <Typography className={classes.mentorDesg}>
+                        {desg}
+                    </Typography>
                 </Box>
                 <Box className={classes.videoCount}>
-                    <Typography className={classes.count}>{total_count}</Typography>
-                    <Typography className={classes.countText}>VIDEOS</Typography>
+                    <Typography className={classes.count}>
+                        {total_count}
+                    </Typography>
+                    <Typography className={classes.countText}>
+                        VIDEOS
+                    </Typography>
                 </Box>
             </Box>
-        </Card>
+        </Box>
     );
 };
 
