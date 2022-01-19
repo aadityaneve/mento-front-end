@@ -44,7 +44,6 @@ const AllTopics = () => {
         width: '87%',
         margin: 'auto',
         display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'space-evenly',
         gap: '15px',
 
@@ -52,11 +51,16 @@ const AllTopics = () => {
     };
 
     const topicsBox = {
-        border: '1px solid black',
+        marginTop: '7px',
         display: 'flex',
         flexDirection: 'column',
-        // justifyContent: 'space-evenly',
         gap: '12px',
+    };
+
+    const cardsBox = {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
     };
 
     const verticalAnimatedLine = {
@@ -95,22 +99,23 @@ const AllTopics = () => {
     };
 
     const allCards = {
-        border: '1px solid black',
         display: 'flex',
-        flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
+        // justifyContent: 'space-evenly',
+        // alignItems: 'center',
+
+        '@media(maxWidth: 1150px)': {
+            // flexBasis: 'auto',
+            // flexBasis: '2',
+        },
     };
 
     const titleCase = (str) => {
         var splitStr = str.toLowerCase().split(' ');
         for (var i = 0; i < splitStr.length; i++) {
-            // You do not need to check if i is larger than splitStr length, as your for does that for you
-            // Assign it back to the array
             splitStr[i] =
                 splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
         }
-        // Directly return the joined string
         return splitStr.join(' ');
     };
 
@@ -133,7 +138,7 @@ const AllTopics = () => {
                     </>
                 ))}
             </Box>
-            <Box>
+            <Box sx={cardsBox}>
                 <Typography
                     sx={displayTopicHeading}
                     variant='h5'
