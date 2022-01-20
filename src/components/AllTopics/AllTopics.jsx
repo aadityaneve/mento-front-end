@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilteredTopics } from '../../features/actions';
 import useStyles from './Styles';
 
-import { Box, Button, Typography, Card } from '@mui/material';
+import {
+    Box,
+    Button,
+    Typography,
+    Card,
+    FormControl,
+    InputLabel,
+    Select,
+    OutlinedInput,
+    MenuItem,
+} from '@mui/material';
 import TopicCard from '../TopicCard/TopicCard';
 
 const AllTopics = () => {
@@ -36,6 +46,28 @@ const AllTopics = () => {
         'PERSONAL FINANCE',
     ];
 
+    /* Getting Window Size Start */
+    const [screenSize, getDimension] = useState({
+        dynamicWidth: window.innerWidth,
+        dynamicHeight: window.innerHeight,
+    });
+
+    const setDimension = () => {
+        getDimension({
+            dynamicWidth: window.innerWidth,
+            dynamicHeight: window.innerHeight,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', setDimension);
+
+        return () => {
+            window.removeEventListener('resize', setDimension);
+        };
+    }, [screenSize]);
+    /* Getting Window Size End */
+
     const [displayTopic, setDisplayTopic] = useState('All Videos');
 
     const { allTopics, allTopicsDetails, filteredTopics } = useSelector(
@@ -58,48 +90,90 @@ const AllTopics = () => {
         dispatch(setFilteredTopics(allTopics, topic));
     };
 
+    const handleSelectChange = (e) => {
+        e.preventDefault();
+        setDisplayTopic(e.target.value);
+        dispatch(setFilteredTopics(allTopics, e.target.value));
+    };
+
     return (
-        <Box className={classes.root}>
-            <Box className={classes.topicsBox}>
-                {listOfTopics.map((topic, i) => (
-                    <>
-                        <Typography
-                            onClick={() => handleFilter(topic)}
-                            key={i}
-                            sx={{fontSize: '1rem'}}
-                            className={classes.singleTopic}
-                            variant='h6'
-                            component='h6'
-                            align='left'
+        <>
+            {screenSize.dynamicWidth <= 960 ? (
+                <Box>
+                    <FormControl sx={{ m: 1, width: 300 }}>
+                        <Select
+                            sx={{
+                                backgroundColor: 'lightgrey',
+                                color: 'black',
+                                height: '40px',
+                                border: 'grey',
+                                borderRadius: '0px',
+                            }}
+                            value={displayTopic}
+                            variant='standard'
+                            onChange={(e) => handleSelectChange(e)}
+                            input={<OutlinedInput label='Name' />}
+                            // MenuProps={"MenuProps"}
                         >
-                            <span
-                                className={classes.verticalAnimatedLine}
-                            ></span>
-                            {topic}
-                        </Typography>
-                    </>
-                ))}
-            </Box>
-            <Box className={classes.cardsBox}>
-                <Typography
-                    className={classes.displayTopicHeading}
-                    variant='h5'
-                    component='h5'
-                >
-                    {titleCase(displayTopic)}
-                </Typography>
-                <Box className={classes.allCards}>
-                    {displayTopic === 'All Videos' ||
-                    displayTopic === 'ALL TOPICS'
-                        ? allTopics.map((topic) => (
-                              <TopicCard key={topic._id} topic={topic} />
-                          ))
-                        : filteredTopics.map((topic) => (
-                              <TopicCard key={topic._id} topic={topic} />
+                            {listOfTopics.map((name, i) => (
+                                <MenuItem
+                                    key={i}
+                                    value={name}
+                                    sx={{ color: 'black' }}
+                                >
+                                    {name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Box>
+            ) : null}
+            <Box className={classes.root}>
+                <Box className={classes.topicsBox}>
+                    {screenSize.dynamicWidth <= 960
+                        ? null
+                        : listOfTopics.map((topic, i) => (
+                              <>
+                                  <Typography
+                                      onClick={() => handleFilter(topic)}
+                                      key={i}
+                                      sx={{ fontSize: '1rem' }}
+                                      className={classes.singleTopic}
+                                      variant='h6'
+                                      component='h6'
+                                      align='left'
+                                  >
+                                      <span
+                                          className={
+                                              classes.verticalAnimatedLine
+                                          }
+                                      ></span>
+                                      {topic}
+                                  </Typography>
+                              </>
                           ))}
                 </Box>
+                <Box className={classes.cardsBox}>
+                    <Typography
+                        className={classes.displayTopicHeading}
+                        variant='h5'
+                        component='h5'
+                    >
+                        {titleCase(displayTopic)}
+                    </Typography>
+                    <Box className={classes.allCards}>
+                        {displayTopic === 'All Videos' ||
+                        displayTopic === 'ALL TOPICS'
+                            ? allTopics.map((topic) => (
+                                  <TopicCard key={topic._id} topic={topic} />
+                              ))
+                            : filteredTopics.map((topic) => (
+                                  <TopicCard key={topic._id} topic={topic} />
+                              ))}
+                    </Box>
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 };
 
