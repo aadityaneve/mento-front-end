@@ -30,18 +30,30 @@ const TopicCard = ({
             <Box className={classes.cardDetails}>
                 <Box className={classes.mentorPhoto}></Box>
                 <Box className={classes.mentorDetails}>
-                    <Typography className={classes.mentorName}>
+                    <Typography
+                        sx={{ fontSize: '0.9rem', fontWeight: 'bold' }}
+                        className={classes.mentorName}
+                    >
                         {name}
                     </Typography>
-                    <Typography className={classes.mentorDesg}>
+                    <Typography
+                        sx={{ fontSize: '0.75rem' }}
+                        className={classes.mentorDesg}
+                    >
                         {desg}
                     </Typography>
                 </Box>
                 <Box className={classes.videoCount}>
-                    <Typography className={classes.count}>
+                    <Typography
+                        sx={{ fontSize: '0.9rem', fontWeight: 'bold' }}
+                        className={classes.count}
+                    >
                         {total_count}
                     </Typography>
-                    <Typography className={classes.countText}>
+                    <Typography
+                        sx={{ fontSize: '0.75rem' }}
+                        className={classes.countText}
+                    >
                         VIDEOS
                     </Typography>
                 </Box>

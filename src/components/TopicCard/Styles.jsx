@@ -7,8 +7,8 @@ const useStyles = makeStyles({
 
         border: '1px solid black',
         color: 'white',
-        width: '280px', // calc(33.333333% - 20px)
-        height: '60vh',
+        width: '290px', // calc(33.333333% - 20px)
+        height: '55vh',
         marginLeft: '10px',
         marginRight: '10px',
         marginBottom: '30px',

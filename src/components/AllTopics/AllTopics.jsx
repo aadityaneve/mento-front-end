@@ -66,9 +66,10 @@ const AllTopics = () => {
                         <Typography
                             onClick={() => handleFilter(topic)}
                             key={i}
+                            sx={{fontSize: '1rem'}}
                             className={classes.singleTopic}
-                            variant='h7'
-                            component='h7'
+                            variant='h6'
+                            component='h6'
                             align='left'
                         >
                             <span
