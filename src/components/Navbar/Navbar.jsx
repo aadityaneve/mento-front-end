@@ -206,6 +206,7 @@ export default function Navbar() {
                                     <SearchIcon />
                                 </SearchIconWrapper>
                                 <StyledInputBase
+                                    sx={{ fontSize: '12px' }}
                                     placeholder='Topic name, Influencers name'
                                     inputProps={{ 'aria-label': 'search' }}
                                 />
