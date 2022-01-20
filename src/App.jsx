@@ -21,6 +21,8 @@ function App() {
         <div className='App'>
             <Navbar />
             <AllTopics />
+            <FooterTop />
+            <FooterBox />
         </div>
     );
 }
