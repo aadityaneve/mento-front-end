@@ -85,7 +85,7 @@ export default function Navbar() {
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
-            sx={{marginTop: '48px'}}
+            sx={{ marginTop: '48px' }}
             anchorEl={anchorEl}
             anchorOrigin={{
                 vertical: 'top',
@@ -166,17 +166,18 @@ export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
-                style={{ background: '#1A1D24' }}
+                style={{ background: 'transparent' }}
                 sx={{ position: 'sticky', zIndex: '3' }}
                 position='static'
             >
-                <Toolbar>
-                    <img
-                        className={classes.logoStyle}
-                        alt='logo'
-                        src='https://www.mento.co.in/assets/logo-e65920660caecc5be1d6b1757278bcb5745b83cfbf08d0dcdc5cd30bead06334.svg'
-                    ></img>
-                    {/* <IconButton
+                <Box sx={{ width: '93%', margin: 'auto' }}>
+                    <Toolbar>
+                        <img
+                            className={classes.logoStyle}
+                            alt='logo'
+                            src='https://www.mento.co.in/assets/logo-e65920660caecc5be1d6b1757278bcb5745b83cfbf08d0dcdc5cd30bead06334.svg'
+                        ></img>
+                        {/* <IconButton
                         size='large'
                         edge='start'
                         color='inherit'
@@ -185,94 +186,94 @@ export default function Navbar() {
                     >
                         <MenuIcon />
                     </IconButton> */}
-                    <Typography
-                        variant='h6'
-                        noWrap
-                        component='div'
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
-                    >
-                        {/* MUI */}
-                    </Typography>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box
-                        sx={{
-                            display: { xs: 'block flex', md: 'flex' },
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder='Topic name, Influencers name'
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>
-                        <IconButton
-                            size='large'
-                            aria-label='show 4 new mails'
-                            color='inherit'
+                        <Typography
+                            variant='h6'
+                            noWrap
+                            component='div'
+                            sx={{ display: { xs: 'none', sm: 'block' } }}
                         >
-                            <Typography
-                                sx={{
-                                    display: { xs: 'none', md: 'block' },
-                                    fontSize: '0.8rem',
-                                }}
-                                variant='h6'
-                                component='h6'
+                            {/* MUI */}
+                        </Typography>
+                        <Box sx={{ flexGrow: 1 }} />
+                        <Box
+                            sx={{
+                                display: { xs: 'block flex', md: 'flex' },
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Search>
+                                <SearchIconWrapper>
+                                    <SearchIcon />
+                                </SearchIconWrapper>
+                                <StyledInputBase
+                                    placeholder='Topic name, Influencers name'
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                            </Search>
+                            <IconButton
+                                size='large'
+                                aria-label='show 4 new mails'
+                                color='inherit'
                             >
-                                ALL TOPICS
-                            </Typography>
-                            {/* <Badge badgeContent={4} color='error'>
+                                <Typography
+                                    sx={{
+                                        display: { xs: 'none', md: 'block' },
+                                        fontSize: '0.8rem',
+                                    }}
+                                    variant='h6'
+                                    component='h6'
+                                >
+                                    ALL TOPICS
+                                </Typography>
+                                {/* <Badge badgeContent={4} color='error'>
                                 <MailIcon />
                             </Badge> */}
-                        </IconButton>
-                        <IconButton
-                            size='large'
-                            aria-label='show 17 new notifications'
-                            color='inherit'
-                        >
-                            <Typography
-                                sx={{
-                                    display: { xs: 'none', md: 'block' },
-                                    fontSize: '0.8rem',
-                                }}
-                                variant='h6'
-                                component='h6'
+                            </IconButton>
+                            <IconButton
+                                size='large'
+                                aria-label='show 17 new notifications'
+                                color='inherit'
                             >
-                                ABOUT
-                            </Typography>
-                            {/* <Badge badgeContent={17} color='error'>
+                                <Typography
+                                    sx={{
+                                        display: { xs: 'none', md: 'block' },
+                                        fontSize: '0.8rem',
+                                    }}
+                                    variant='h6'
+                                    component='h6'
+                                >
+                                    ABOUT
+                                </Typography>
+                                {/* <Badge badgeContent={17} color='error'>
                                 <NotificationsIcon />
                             </Badge> */}
-                        </IconButton>
-                        <IconButton
-                            sx={{ display: { xs: 'none', md: 'block' } }}
-                            size='large'
-                            edge='end'
-                            aria-label='account of current user'
-                            aria-controls={menuId}
-                            aria-haspopup='true'
-                            onClick={handleProfileMenuOpen}
-                            color='inherit'
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size='large'
-                            aria-label='show more'
-                            aria-controls={mobileMenuId}
-                            aria-haspopup='true'
-                            onClick={handleMobileMenuOpen}
-                            color='inherit'
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        {/* <IconButton
+                            </IconButton>
+                            <IconButton
+                                sx={{ display: { xs: 'none', md: 'block' } }}
+                                size='large'
+                                edge='end'
+                                aria-label='account of current user'
+                                aria-controls={menuId}
+                                aria-haspopup='true'
+                                onClick={handleProfileMenuOpen}
+                                color='inherit'
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                        </Box>
+                        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size='large'
+                                aria-label='show more'
+                                aria-controls={mobileMenuId}
+                                aria-haspopup='true'
+                                onClick={handleMobileMenuOpen}
+                                color='inherit'
+                                sx={{ mr: 2 }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            {/* <IconButton
                             size='large'
                             aria-label='show more'
                             aria-controls={mobileMenuId}
@@ -282,8 +283,9 @@ export default function Navbar() {
                         >
                             <MoreIcon />
                         </IconButton> */}
-                    </Box>
-                </Toolbar>
+                        </Box>
+                    </Toolbar>
+                </Box>
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
