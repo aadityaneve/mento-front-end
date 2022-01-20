@@ -68,7 +68,7 @@ const AllTopics = () => {
     }, [screenSize]);
     /* Getting Window Size End */
 
-    const [displayTopic, setDisplayTopic] = useState('All Videos');
+    const [displayTopic, setDisplayTopic] = useState('ALL TOPICS');
 
     const { allTopics, allTopicsDetails, filteredTopics } = useSelector(
         (state) => state
