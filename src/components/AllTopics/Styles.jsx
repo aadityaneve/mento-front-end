@@ -5,8 +5,7 @@ const useStyles = makeStyles({
         width: '87%',
         margin: '3% auto auto auto',
         display: 'flex',
-        // justifyContent: 'space-evenly',
-        gap: '15px',
+        gap: '10px',
 
         color: '#e8e7e7',
     },
