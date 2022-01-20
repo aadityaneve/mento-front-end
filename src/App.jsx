@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTopics, getAllTopicsDetails } from './features/actions';
-import TopicCard from './components/TopicCard/TopicCard';
-import AllTopics from './components/AllTopics/AllTopics';
-
+import FooterBox from './components/FooterBox/FooterBox';
+import FooterTop from './components/FooterTop/FooterTop';
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
@@ -19,8 +18,8 @@ function App() {
 
     return (
         <div className='App'>
-            <Navbar />
-            <AllTopics />
+            <FooterTop />
+            <FooterBox />
         </div>
     );
 }
