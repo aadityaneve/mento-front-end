@@ -13,7 +13,7 @@ const TopicCard = ({
     const classes = useStyles(props);
 
     return (
-        <Card className={classes.cardStyle}>
+        <Box className={classes.cardStyle}>
             <Box className={classes.backgroundImage}></Box>
             <Button className={classes.playButton}>
                 <PlayArrowIcon color='white' fontSize='large' />
@@ -30,17 +30,35 @@ const TopicCard = ({
             <Box className={classes.cardDetails}>
                 <Box className={classes.mentorPhoto}></Box>
                 <Box className={classes.mentorDetails}>
-                    <Typography className={classes.mentorName}>
+                    <Typography
+                        sx={{ fontSize: '0.9rem', fontWeight: 'bold' }}
+                        className={classes.mentorName}
+                    >
                         {name}
                     </Typography>
-                    <Typography className={classes.mentorDesg}>{desg}</Typography>
+                    <Typography
+                        sx={{ fontSize: '0.75rem' }}
+                        className={classes.mentorDesg}
+                    >
+                        {desg}
+                    </Typography>
                 </Box>
                 <Box className={classes.videoCount}>
-                    <Typography className={classes.count}>{total_count}</Typography>
-                    <Typography className={classes.countText}>VIDEOS</Typography>
+                    <Typography
+                        sx={{ fontSize: '0.9rem', fontWeight: 'bold' }}
+                        className={classes.count}
+                    >
+                        {total_count}
+                    </Typography>
+                    <Typography
+                        sx={{ fontSize: '0.75rem' }}
+                        className={classes.countText}
+                    >
+                        VIDEOS
+                    </Typography>
                 </Box>
             </Box>
-        </Card>
+        </Box>
     );
 };
 

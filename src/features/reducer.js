@@ -2,12 +2,14 @@ import {
     GET_ALL_TOPICS,
     GET_ALL_TOPICS_DETAILS,
     ERROR_MESSAGE,
+    SET_FILTERED_TOPICS,
 } from './actionTypes';
 
 const init = {
     errorMessage: null,
     allTopics: [],
     allTopicsDetails: [],
+    filteredTopics: [],
 };
 
 export const reducer = (state = init, { type, payload }) => {
@@ -28,6 +30,12 @@ export const reducer = (state = init, { type, payload }) => {
             return {
                 ...state,
                 errorMessage: payload,
+            };
+
+        case SET_FILTERED_TOPICS:
+            return {
+                ...state,
+                filteredTopics: payload,
             };
 
         default:
