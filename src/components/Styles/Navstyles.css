@@ -5,7 +5,7 @@
     align-items: center;
     background-color:#1a1d24;
     color: white;
-    padding: 0.5rem 6.3rem;
+    padding: 0.35rem 6.3rem;
     font-family: 'Roboto Condensed', sans-serif;
     margin: auto;
 }
@@ -52,6 +52,7 @@
     font-weight:600;
     letter-spacing: -1px;
     font-size:14px;
+    outline: none;
 }
 .btn-primary {
     font-family: 'Roboto Slab', serif;
