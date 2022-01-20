@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllTopics, getAllTopicsDetails } from './features/actions';
 import FooterBox from './components/FooterBox/FooterBox';
 import FooterTop from './components/FooterTop/FooterTop';
-import Navbar from './components/Navbar/Navbar';
-
 function App() {
     const { allTopics, allTopicsDetails } = useSelector((state) => state);
     const dispatch = useDispatch();

@@ -7,7 +7,7 @@ function FooterTop() {
         backgroundColor: '#1a1d24',
         fontFamily: 'Roboto Condensed, sans-serif'
     }
-
+//jkanwdklawwadawdwa
     return <div>
         <Box sx={boxstyle}>
             <Box sx={{ borderBottom: "5px solid white", width: "40px", margin: "auto", marginBottom: "10px" }}>
