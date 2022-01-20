@@ -15,8 +15,17 @@ const TopicCard = ({
     return (
         <Box className={classes.cardStyle}>
             <Box className={classes.backgroundImage}></Box>
-            <Button className={classes.playButton}>
-                <PlayArrowIcon color='white' fontSize='large' />
+            <Button
+                sx={{
+                    backgroundColor: 'white',
+                    borderRadius: '50%',
+                    '&:hover': {
+                        backgroundColor: 'white',
+                    },
+                }}
+                className={classes.playButton}
+            >
+                <PlayArrowIcon fontSize='large' />
             </Button>
             <Box className={classes.slantedLine}>SlantedLine</Box>
             <Typography
@@ -27,7 +36,9 @@ const TopicCard = ({
             >
                 {heading}
             </Typography>
-            <Box className={classes.cardDetails}>
+            <Box
+                className={classes.cardDetails}
+            >
                 <Box className={classes.mentorPhoto}></Box>
                 <Box className={classes.mentorDetails}>
                     <Typography

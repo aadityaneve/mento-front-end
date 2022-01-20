@@ -1,5 +1,4 @@
 import { makeStyles } from '@mui/styles';
-import { borderLeft } from '@mui/system';
 
 const useStyles = makeStyles({
     cardStyle: {
@@ -44,7 +43,7 @@ const useStyles = makeStyles({
     },
 
     playButton: {
-        top: '33%',
+        top: '37%',
         left: '69%',
         width: '80px',
         height: '80px',
@@ -102,7 +101,8 @@ const useStyles = makeStyles({
 
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
 
     mentorPhoto: {
@@ -110,7 +110,7 @@ const useStyles = makeStyles({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '0 0',
-        borderRadius: '100%',
+        borderRadius: '50%',
         width: '45px',
         height: '45px',
     },
@@ -119,23 +119,22 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        alignItems: 'flex-start',
+        // alignItems: 'flex-start',
     },
 
     mentorName: {
         fontSize: '0.9em',
         fontWeight: 'bold',
-        alignItems: 'flex-start',
+        textAlign: 'left',
     },
 
     mentorDesg: {
         fontSize: '0.5454545455em',
         color: '#999999',
-        whiteSpace: 'nowrap',
+        whiteSpace: 'wrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        width: 'calc(100% - 20px)',
-        alignItems: 'flex-start',
+        textAlign: 'left',
     },
 
     videoCount: {
@@ -154,8 +153,8 @@ const useStyles = makeStyles({
         fontSize: '0.5454545455em',
         color: '#999999',
         whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
+        // overflow: 'hidden',
+        // textOverflow: 'ellipsis',
     },
 });
 
