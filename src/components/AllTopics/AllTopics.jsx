@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { setFilteredTopics } from '../../features/actions';
+import useStyles from './Styles';
 
-import { Box, Button, Typography, Card } from '@mui/material';
+import {
+    Box,
+    Button,
+    Typography,
+    Card,
+    FormControl,
+    InputLabel,
+    Select,
+    OutlinedInput,
+    MenuItem,
+} from '@mui/material';
 import TopicCard from '../TopicCard/TopicCard';
 
 const AllTopics = () => {
     const listOfTopics = [
         'ALL TOPICS',
-        'FILM-MAKING',
+        'FILM MAKING',
         'BEAT BOXING',
         'CONTENT CREATION',
         'FILM PRODUCTION',
@@ -22,7 +34,7 @@ const AllTopics = () => {
         'BAKING',
         'EMCEEING',
         'PERFORMING ARTS',
-        'STAND-UP COMEDY',
+        'STAND UP COMEDY',
         'IMPROV COMEDY',
         'ARTIST MANAGEMENT',
         'FOOD BLOGGING',
@@ -34,81 +46,35 @@ const AllTopics = () => {
         'PERSONAL FINANCE',
     ];
 
+    /* Getting Window Size Start */
+    const [screenSize, getDimension] = useState({
+        dynamicWidth: window.innerWidth,
+        dynamicHeight: window.innerHeight,
+    });
+
+    const setDimension = () => {
+        getDimension({
+            dynamicWidth: window.innerWidth,
+            dynamicHeight: window.innerHeight,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', setDimension);
+
+        return () => {
+            window.removeEventListener('resize', setDimension);
+        };
+    }, [screenSize]);
+    /* Getting Window Size End */
+
     const [displayTopic, setDisplayTopic] = useState('All Videos');
 
-    const { allTopics, allTopicsDetails } = useSelector((state) => state);
-    console.log('allTopics:', allTopics);
+    const { allTopics, allTopicsDetails, filteredTopics } = useSelector(
+        (state) => state
+    );
     const dispatch = useDispatch();
-
-    const root = {
-        width: '87%',
-        margin: 'auto',
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        gap: '15px',
-
-        color: '#e8e7e7',
-    };
-
-    const topicsBox = {
-        marginTop: '7px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-    };
-
-    const cardsBox = {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-    };
-
-    const verticalAnimatedLine = {
-        color: 'yellow',
-        '&:hover': {
-            content: '',
-            position: 'absolute',
-            height: '0',
-            bottom: '-1px',
-            width: '4px',
-            background: '#f36f21',
-            transition: 'all 0.3s ease',
-        },
-        /* '&:after': {
-            boxSizing: 'border-box',
-        }, */
-    };
-
-    const singleTopic = {
-        cursor: 'pointer',
-
-        transition: 'all 0.5s',
-        '&:hover': {
-            transform: 'scale(1.1)',
-        },
-    };
-
-    const displayTopicHeading = {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-
-        color: '#DD6721',
-
-        marginLeft: '2%',
-    };
-
-    const allCards = {
-        display: 'flex',
-        flexWrap: 'wrap',
-        // justifyContent: 'space-evenly',
-        // alignItems: 'center',
-
-        '@media(maxWidth: 1150px)': {
-            // flexBasis: 'auto',
-            // flexBasis: '2',
-        },
-    };
+    const classes = useStyles();
 
     const titleCase = (str) => {
         var splitStr = str.toLowerCase().split(' ');
@@ -119,40 +85,95 @@ const AllTopics = () => {
         return splitStr.join(' ');
     };
 
+    const handleFilter = (topic) => {
+        setDisplayTopic(topic);
+        dispatch(setFilteredTopics(allTopics, topic));
+    };
+
+    const handleSelectChange = (e) => {
+        e.preventDefault();
+        setDisplayTopic(e.target.value);
+        dispatch(setFilteredTopics(allTopics, e.target.value));
+    };
+
     return (
-        <Box sx={root}>
-            <Box sx={topicsBox}>
-                {listOfTopics.map((topic, i) => (
-                    <>
-                        <Typography
-                            onClick={() => setDisplayTopic(topic)}
-                            key={i}
-                            sx={singleTopic}
-                            variant='h7'
-                            component='h7'
-                            align='left'
+        <>
+            {screenSize.dynamicWidth <= 960 ? (
+                <Box>
+                    <FormControl sx={{ m: 1, width: 300 }}>
+                        <Select
+                            sx={{
+                                backgroundColor: 'lightgrey',
+                                color: 'black',
+                                height: '40px',
+                                border: 'grey',
+                                borderRadius: '0px',
+                            }}
+                            value={displayTopic}
+                            variant='standard'
+                            onChange={(e) => handleSelectChange(e)}
+                            input={<OutlinedInput label='Name' />}
+                            // MenuProps={"MenuProps"}
                         >
-                            <span className={verticalAnimatedLine}></span>
-                            {topic}
-                        </Typography>
-                    </>
-                ))}
-            </Box>
-            <Box sx={cardsBox}>
-                <Typography
-                    sx={displayTopicHeading}
-                    variant='h5'
-                    component='h5'
-                >
-                    {titleCase(displayTopic)}
-                </Typography>
-                <Box sx={allCards}>
-                    {allTopics.map((topic) => (
-                        <TopicCard key={topic._id} topic={topic} />
-                    ))}
+                            {listOfTopics.map((name, i) => (
+                                <MenuItem
+                                    key={i}
+                                    value={name}
+                                    sx={{ color: 'black' }}
+                                >
+                                    {name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Box>
+            ) : null}
+            <Box className={classes.root}>
+                <Box className={classes.topicsBox}>
+                    {screenSize.dynamicWidth <= 960
+                        ? null
+                        : listOfTopics.map((topic, i) => (
+                              <>
+                                  <Typography
+                                      onClick={() => handleFilter(topic)}
+                                      key={i}
+                                      sx={{ fontSize: '1rem' }}
+                                      className={classes.singleTopic}
+                                      variant='h6'
+                                      component='h6'
+                                      align='left'
+                                  >
+                                      <span
+                                          className={
+                                              classes.verticalAnimatedLine
+                                          }
+                                      ></span>
+                                      {topic}
+                                  </Typography>
+                              </>
+                          ))}
+                </Box>
+                <Box className={classes.cardsBox}>
+                    <Typography
+                        className={classes.displayTopicHeading}
+                        variant='h5'
+                        component='h5'
+                    >
+                        {titleCase(displayTopic)}
+                    </Typography>
+                    <Box className={classes.allCards}>
+                        {displayTopic === 'All Videos' ||
+                        displayTopic === 'ALL TOPICS'
+                            ? allTopics.map((topic) => (
+                                  <TopicCard key={topic._id} topic={topic} />
+                              ))
+                            : filteredTopics.map((topic) => (
+                                  <TopicCard key={topic._id} topic={topic} />
+                              ))}
+                    </Box>
                 </Box>
             </Box>
-        </Box>
+        </>
     );
 };
 
