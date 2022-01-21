@@ -61,19 +61,21 @@ function Videobox() {
                                 width: "160px", height: "60px", marginLeft:"5px", padding:"6px", backgroundRepeat: 'no-repeat',
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
+                                pointer: "cursor",
                                 backgroundImage: "url('https://www.mento.co.in/assets/app-store-black-89aa31eafa093e3c654fd68421e895d386767ea78997aa91db6ef811c3fb0152.svg')"
                             }}></Box>
                         </Grid>
                     </Grid>
             </Grid>
             <Grid item  xs={8} marginTop="20px">
-                <Container >
+                <Container  >
                 <Reactplayer url="https://d1tthr7pv14hhy.cloudfront.net/Images/general/background1.mp4"
                 playing={true}
                 loop={true}
                 muted={true}
                 width="700px"
                 height="400px"
+                borderRadius="50%"
                 />
                 </Container>
             </Grid>
