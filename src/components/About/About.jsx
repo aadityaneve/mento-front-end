@@ -1,6 +1,6 @@
 const About = () => {
   return <>
-    <div className="pt-28 ml-[70px] text-left text-white w-5/12 font-bold"  >
+    <div className="pt-28 ml-[70px] text-left md:w-full text-white lg:w-5/12 font-bold"  >
       <div className="text-4xl">
         Ever wondered what you really like doing?What is your true calling?
         <br /><br />

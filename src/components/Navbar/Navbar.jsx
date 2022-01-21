@@ -185,7 +185,9 @@ export default function Navbar() {
     const classes = useStyles();
     const navigate = useNavigate();
 
-    const [popup,setPopup] = useState(true);
+    
+
+    const [popup,setPopup] = useState(false);
 
 
     function crossbtn(){
@@ -297,6 +299,7 @@ export default function Navbar() {
                                     color='inherit'
                                 >
                                     <AccountCircle />
+                                    
                                 </IconButton>
                             </Box>
                             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -357,6 +360,10 @@ export default function Navbar() {
                 </div>
 
             </div> : null}
+
+            <div className='mt-20'>
+                <button onClick={()=>{setPopup(true)}} className='text-white bg-[#d1521f] px-3 py-2 font-bold rounded-md' >LOGIN</button>
+            </div>
 
         </>
     );
