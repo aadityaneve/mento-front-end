@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import TopicIcon from '@mui/icons-material/Topic';
+import Avatar from '@mui/material/Avatar';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
@@ -285,7 +286,14 @@ export default function Navbar() {
                                 onClick={handleProfileMenuOpen}
                                 color='inherit'
                             >
-                                <AccountCircle />
+                                {PROFILE?.imageUrl ? (
+                                    <Avatar
+                                        alt={PROFILE?.name}
+                                        src={PROFILE?.imageUrl}
+                                    />
+                                ) : (
+                                    <AccountCircle />
+                                )}
                             </IconButton>
                         </Box>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
