@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React ,{useState} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -20,6 +20,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
 import { useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
+import { FaFacebookF } from 'react-icons/fa'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -60,6 +61,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+
+
 
 export default function Navbar() {
     const { PROFILE } = useSelector((state) => state);
@@ -182,25 +185,34 @@ export default function Navbar() {
     const classes = useStyles();
     const navigate = useNavigate();
 
+    const [popup,setPopup] = useState(true);
+
+
+    function crossbtn(){
+    setPopup(false)
+    }
+
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar
-                sx={{
-                    background: 'transparent',
-                    position: 'fixed',
-                    zIndex: '3',
-                }} //background: '#1A1D24'
-            >
-                <Box sx={{ width: '93%', margin: 'auto' }}>
-                    <Toolbar>
-                        <img
-                            style={{ cursor: 'pointer' }}
-                            onClick={() => navigate(`/`)}
-                            className={classes.logoStyle}
-                            alt='logo'
-                            src='https://www.mento.co.in/assets/logo-e65920660caecc5be1d6b1757278bcb5745b83cfbf08d0dcdc5cd30bead06334.svg'
-                        ></img>
-                        {/* <IconButton
+        <>
+
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar
+                    sx={{
+                        background: 'transparent',
+                        position: 'fixed',
+                        zIndex: '3',
+                    }} //background: '#1A1D24'
+                >
+                    <Box sx={{ width: '93%', margin: 'auto' }}>
+                        <Toolbar>
+                            <img
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => navigate(`/`)}
+                                className={classes.logoStyle}
+                                alt='logo'
+                                src='https://www.mento.co.in/assets/logo-e65920660caecc5be1d6b1757278bcb5745b83cfbf08d0dcdc5cd30bead06334.svg'
+                            ></img>
+                            {/* <IconButton
                         size='large'
                         edge='start'
                         color='inherit'
@@ -209,97 +221,97 @@ export default function Navbar() {
                     >
                         <MenuIcon />
                     </IconButton> */}
-                        <Typography
-                            variant='h6'
-                            noWrap
-                            component='div'
-                            sx={{ display: { xs: 'none', sm: 'block' } }}
-                        >
-                            {/* MUI */}
-                        </Typography>
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Box
-                            sx={{
-                                display: { xs: 'block flex', md: 'flex' },
-                                alignItems: 'center',
-                            }}
-                        >
-                            <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon />
-                                </SearchIconWrapper>
-                                <StyledInputBase
-                                    sx={{ fontSize: '12px' }}
-                                    placeholder='Topic name, Influencers name'
-                                    inputProps={{ 'aria-label': 'search' }}
-                                />
-                            </Search>
-                            <IconButton
-                                size='large'
-                                aria-label='show 4 new mails'
-                                color='inherit'
-                                onClick={() => navigate(`/allTopics`)}
+                            <Typography
+                                variant='h6'
+                                noWrap
+                                component='div'
+                                sx={{ display: { xs: 'none', sm: 'block' } }}
                             >
-                                <Typography
-                                    sx={{
-                                        display: { xs: 'none', md: 'block' },
-                                        fontSize: '0.8rem',
-                                    }}
-                                    variant='h6'
-                                    component='h6'
+                                {/* MUI */}
+                            </Typography>
+                            <Box sx={{ flexGrow: 1 }} />
+                            <Box
+                                sx={{
+                                    display: { xs: 'block flex', md: 'flex' },
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Search>
+                                    <SearchIconWrapper>
+                                        <SearchIcon />
+                                    </SearchIconWrapper>
+                                    <StyledInputBase
+                                        sx={{ fontSize: '12px' }}
+                                        placeholder='Topic name, Influencers name'
+                                        inputProps={{ 'aria-label': 'search' }}
+                                    />
+                                </Search>
+                                <IconButton
+                                    size='large'
+                                    aria-label='show 4 new mails'
+                                    color='inherit'
+                                    onClick={() => navigate(`/allTopics`)}
                                 >
-                                    ALL TOPICS
-                                </Typography>
-                                {/* <Badge badgeContent={4} color='error'>
+                                    <Typography
+                                        sx={{
+                                            display: { xs: 'none', md: 'block' },
+                                            fontSize: '0.8rem',
+                                        }}
+                                        variant='h6'
+                                        component='h6'
+                                    >
+                                        ALL TOPICS
+                                    </Typography>
+                                    {/* <Badge badgeContent={4} color='error'>
                                 <MailIcon />
                             </Badge> */}
-                            </IconButton>
-                            <IconButton
-                                size='large'
-                                aria-label='show 17 new notifications'
-                                color='inherit'
-                                onClick={() => navigate(`/about`)}
-                            >
-                                <Typography
-                                    sx={{
-                                        display: { xs: 'none', md: 'block' },
-                                        fontSize: '0.8rem',
-                                    }}
-                                    variant='h6'
-                                    component='h6'
+                                </IconButton>
+                                <IconButton
+                                    size='large'
+                                    aria-label='show 17 new notifications'
+                                    color='inherit'
+                                    onClick={() => navigate(`/about`)}
                                 >
-                                    ABOUT
-                                </Typography>
-                                {/* <Badge badgeContent={17} color='error'>
+                                    <Typography
+                                        sx={{
+                                            display: { xs: 'none', md: 'block' },
+                                            fontSize: '0.8rem',
+                                        }}
+                                        variant='h6'
+                                        component='h6'
+                                    >
+                                        ABOUT
+                                    </Typography>
+                                    {/* <Badge badgeContent={17} color='error'>
                                 <NotificationsIcon />
                             </Badge> */}
-                            </IconButton>
-                            <IconButton
-                                sx={{ display: { xs: 'none', md: 'block' } }}
-                                size='large'
-                                edge='end'
-                                aria-label='account of current user'
-                                aria-controls={menuId}
-                                aria-haspopup='true'
-                                onClick={handleProfileMenuOpen}
-                                color='inherit'
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                        </Box>
-                        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size='large'
-                                aria-label='show more'
-                                aria-controls={mobileMenuId}
-                                aria-haspopup='true'
-                                onClick={handleMobileMenuOpen}
-                                color='inherit'
-                                sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            {/* <IconButton
+                                </IconButton>
+                                <IconButton
+                                    sx={{ display: { xs: 'none', md: 'block' } }}
+                                    size='large'
+                                    edge='end'
+                                    aria-label='account of current user'
+                                    aria-controls={menuId}
+                                    aria-haspopup='true'
+                                    onClick={handleProfileMenuOpen}
+                                    color='inherit'
+                                >
+                                    <AccountCircle />
+                                </IconButton>
+                            </Box>
+                            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                                <IconButton
+                                    size='large'
+                                    aria-label='show more'
+                                    aria-controls={mobileMenuId}
+                                    aria-haspopup='true'
+                                    onClick={handleMobileMenuOpen}
+                                    color='inherit'
+                                    sx={{ mr: 2 }}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                                {/* <IconButton
                             size='large'
                             aria-label='show more'
                             aria-controls={mobileMenuId}
@@ -309,12 +321,43 @@ export default function Navbar() {
                         >
                             <MoreIcon />
                         </IconButton> */}
-                        </Box>
-                    </Toolbar>
-                </Box>
-            </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
-        </Box>
+                            </Box>
+                        </Toolbar>
+                    </Box>
+                </AppBar>
+                {renderMobileMenu}
+                {renderMenu}
+            </Box>
+
+        {/* this area is for popup menu */}
+
+            {(popup) ? <div className='border mt-20 absolute ml-[20%] w-3/5 h-3/5  bg-red-700 z-10' >
+                <div className='bg-gray-700 flex w-full h-full'>
+                    <div>
+                        <img src="https://d1tthr7pv14hhy.cloudfront.net/Images/Courses/Film-Making/Finalnitish.jpg" className='h-full' />
+                    </div>
+                    <div className='bg-white grow h-full'>
+                        <button onClick={()=>{crossbtn()}} className='absolute ml-[25%] mt-4 text-lg' >X</button>
+                        <div className='w-full h-full flex flex-col gap-y-3 justify-center place-self-center'>
+
+                            <div className='text-3xl' >Welcome Back!</div>
+                            <div className='text-base'>LOG IN WITH</div>
+                            <div className='flex justify-center gap-x-4'>
+                                <div className='flex items-center gap-x-2 border border-black text-lg font-semibold text-white px-2 rounded-md bg-[#3b5997] cursor-pointer hover:bg-[#254179]' >
+                                    <FaFacebookF className='w-7 h-7' />
+                                    <div>FACEBOOK</div>
+                                </div>
+                                <div><Glogin />
+                                </div>
+                            </div>
+                            <div className='text-gray-600' >Not a member yet? SIGN UP</div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div> : null}
+
+        </>
     );
 }

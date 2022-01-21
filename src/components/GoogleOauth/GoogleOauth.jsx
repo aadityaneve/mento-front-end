@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { TiSocialGooglePlus } from 'react-icons/ti';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 import { setProfile, removeProfile } from '../../features/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,6 +10,7 @@ const clientId =
 
 export function Glogin() {
     const dispatch = useDispatch();
+    const Navigate = useNavigate();
 
     const onLoginSuccess = (res) => {
         // console.log('Login Success:', res.profileObj);
@@ -18,7 +19,6 @@ export function Glogin() {
 
     const onLoginFailure = (res) => {
         console.log('Login Failed:', res);
-        dispatch(removeProfile(null));
     };
 
     return (
@@ -47,8 +47,8 @@ export function Glogout() {
     const dispatch = useDispatch();
 
     const onSignoutSuccess = () => {
-        // alert('You have been logged out successfully');
-        // console.clear();
+        alert('Signout Successfully')
+        Navigate('/allTopics')
         dispatch(removeProfile(null));
     };
     return (
