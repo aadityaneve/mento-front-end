@@ -12,9 +12,8 @@ import FooterBox from '../FooterBox/FooterBox';
 import FooterTop from './../FooterTop/FooterTop';
 
 const TopicDetails = () => {
-    const { allTopics, allTopicsDetails, filteredTopics } = useSelector(
-        (state) => state
-    );
+    const { allTopics, allTopicsDetails, filteredTopics, onClickTopic, onClickTopicDetails } =
+        useSelector((state) => state);
     const dispatch = useDispatch();
 
     return (
@@ -24,7 +23,7 @@ const TopicDetails = () => {
                     width: '100%',
                     // height: '500vh',
                     backgroundImage:
-                        "url('https://d1tthr7pv14hhy.cloudfront.net/Images/Courses/Entrepreneurship/ritesh77.jpg')",
+                        `url(${onClickTopic.card_img})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: '0 0',
@@ -51,8 +50,7 @@ const TopicDetails = () => {
                     variant='h3'
                     component='h3'
                 >
-                    The World's Youngest Billionaire About A Career In
-                    Entrepreneurship
+                    {onClickTopicDetails.heading}
                 </Typography>
                 <Typography
                     sx={{ fontWeight: 'bold', marginBottom: '20px' }}
@@ -65,9 +63,12 @@ const TopicDetails = () => {
                             textDecoration: 'line-through',
                         }}
                     >
-                        ₹1,299
+                        {onClickTopicDetails.price_initial}
                     </span>{' '}
-                    <span style={{ color: '#F68C26' }}>₹499</span>, YOU GET:
+                    <span style={{ color: '#F68C26' }}>
+                        {onClickTopicDetails.price_after}
+                    </span>
+                    , YOU GET:
                 </Typography>
                 <Button
                     sx={{
@@ -101,7 +102,7 @@ const TopicDetails = () => {
                             marginRight: '12px',
                         }}
                     ></span>{' '}
-                    Exclusive Video Lectures on Entrepreneurship 101
+                    {onClickTopicDetails.puch_line1}
                 </Typography>
                 <Typography
                     sx={{
@@ -124,7 +125,7 @@ const TopicDetails = () => {
                             marginRight: '12px',
                         }}
                     ></span>{' '}
-                    Certificate of Completion signed by Ritesh Agarwal
+                    {onClickTopicDetails.punch_line2}
                 </Typography>
                 <Box sx={{ marginBottom: '80px' }}>
                     <Button
@@ -243,7 +244,7 @@ const TopicDetails = () => {
                                 alignItems: 'center',
                             }}
                         >
-                            {allTopicsDetails[0].videos.map((video, i) => {
+                            {onClickTopicDetails.videos.map((video, i) => {
                                 return <VideoPanel key={i} video={video} />;
                             })}
                         </Box>
@@ -282,7 +283,7 @@ const TopicDetails = () => {
                                         height: '60px',
                                         borderRadius: '50%',
                                         backgroundImage:
-                                            'url("https://d1tthr7pv14hhy.cloudfront.net/Images/Author/Ritesh-Agarwal/ritesh-agarwal-thumbnail.jpg")',
+                                            `url(${onClickTopic.card_img})`,
                                         backgroundSize: 'cover',
                                         backgroundRepeat: 'no-repeat',
                                         backgroundPosition: '0 0',
@@ -307,7 +308,7 @@ const TopicDetails = () => {
                                             marginBottom: '6px',
                                         }}
                                     >
-                                        RITESH AGARWAL
+                                        {onClickTopic.name}
                                     </Typography>
                                     <Typography
                                         sx={{
@@ -319,7 +320,7 @@ const TopicDetails = () => {
                                             marginBottom: '9px',
                                         }}
                                     >
-                                        FOUNDER, OYO ROOMS
+                                        {onClickTopic.desg}
                                     </Typography>
                                     {/* Follow Button And Followers */}
                                     <Box
@@ -365,7 +366,7 @@ const TopicDetails = () => {
                                 variant='h6'
                                 component='h6'
                             >
-                                9
+                                {onClickTopic.total_count}
                             </Typography>
                             <Typography
                                 sx={{
@@ -402,7 +403,7 @@ const TopicDetails = () => {
                             ABOUT
                         </Typography>
 
-                        {allTopicsDetails[0].about.map((about, i) => {
+                        {onClickTopicDetails.about.map((about, i) => {
                             return <AboutMentor key={i} about={about} />;
                         })}
                     </Box>

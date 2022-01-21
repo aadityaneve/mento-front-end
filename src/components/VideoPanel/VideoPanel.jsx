@@ -1,7 +1,17 @@
 import { Box, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import TimerIcon from '@mui/icons-material/Timer';
 
 const VideoPanel = ({ video: { name, desc, duration } }) => {
+    const {
+        allTopics,
+        allTopicsDetails,
+        filteredTopics,
+        onClickTopic,
+        onClickTopicDetails,
+    } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
     return (
         <Box sx={{ backgroundColor: '#F7F7F7', padding: '15px' }}>
             <Box
@@ -13,8 +23,7 @@ const VideoPanel = ({ video: { name, desc, duration } }) => {
             >
                 <Box
                     sx={{
-                        backgroundImage:
-                            'url("https://d1tthr7pv14hhy.cloudfront.net/Images/Courses/Entrepreneurship/RIA1.jpg")',
+                        backgroundImage: `url(${onClickTopic.card_img})`,
                         width: '25vw',
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
