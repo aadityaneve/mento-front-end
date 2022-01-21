@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import {Glogin,Glogout} from '../GoogleOauth/GoogleOauth'
+import {useDispatch, useSelector} from 'react-redux'
 
 export function Profile() {
+    const {PROFILE} = useSelector((state) => state);
     const [mylearn, setMylearn] = useState(true)
     const [users, setUsers] = useState([
         {
@@ -37,15 +39,16 @@ export function Profile() {
             "kam": "Chef Partner, The Bombay"
         },
     ])
+    console.log(PROFILE);
 
     function cross(id){
         setUsers(users.filter(e => e.id !== id));
     }
     return <div className="bg-hero py-10 bg-repeat-x " style={{ backdropFilter: 'brightness(.1)' }}>
         <div className='my-20'>
-            <img src="https://lh3.googleusercontent.com/a-/AOh14GjVMU8LioubMSPA9Q-htAI4pT8FA_2g6MzI0Cbk8A=s96-c" alt="image" className=" w-32 h-32 border-2 rounded-full mx-auto my-6" />
+            <img src={PROFILE.imageUrl} alt="image" className=" w-32 h-32 border-2 rounded-full mx-auto my-6" />
             <div className=" flex justify-center text-6xl  font-semibold " >
-                <h1 className="text-white" > Welcome &nbsp;</h1> <p style={{ color: '#f36f21' }} >St. Paul! </p>
+                <h1 className="text-white" > Welcome &nbsp;</h1> <p style={{ color: '#f36f21' }} >{PROFILE.name}! </p>
             </div>
         </div>
         <div className="" ><Glogin/></div>
