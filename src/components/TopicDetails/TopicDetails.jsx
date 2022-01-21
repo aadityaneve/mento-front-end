@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFilteredTopics } from '../../features/actions';
 import VideoPanel from '../VideoPanel/VideoPanel';
 import AboutMentor from '../AboutMentor/AboutMentor';
-import FooterBox from '../FooterBox/FooterBox';
-import FooterTop from './../FooterTop/FooterTop';
 
 const TopicDetails = () => {
     const { allTopics, allTopicsDetails, filteredTopics, onClickTopic, onClickTopicDetails } =
@@ -409,8 +407,6 @@ const TopicDetails = () => {
                     </Box>
                 </Box>
             </Box>
-            <FooterTop />
-            <FooterBox />
         </Box>
     );
 };

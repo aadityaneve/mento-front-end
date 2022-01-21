@@ -16,6 +16,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
+import { useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
 
 const Search = styled('div')(({ theme }) => ({
@@ -59,6 +62,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+    const { PROFILE } = useSelector((state) => state);
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -100,8 +105,21 @@ export default function Navbar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+            <MenuItem
+                onClick={() => {
+                    handleMenuClose();
+                    navigate(`/profile`);
+                }}
+            >
+                My Profile
+            </MenuItem>
+            <MenuItem
+                onClick={() => {
+                    handleMenuClose();
+                }}
+            >
+                {PROFILE?.googleId ? <Glogout /> : <Glogin />}
+            </MenuItem>
         </Menu>
     );
 
@@ -162,6 +180,7 @@ export default function Navbar() {
     );
 
     const classes = useStyles();
+    const navigate = useNavigate();
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -175,6 +194,8 @@ export default function Navbar() {
                 <Box sx={{ width: '93%', margin: 'auto' }}>
                     <Toolbar>
                         <img
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => navigate(`/`)}
                             className={classes.logoStyle}
                             alt='logo'
                             src='https://www.mento.co.in/assets/logo-e65920660caecc5be1d6b1757278bcb5745b83cfbf08d0dcdc5cd30bead06334.svg'
@@ -217,6 +238,7 @@ export default function Navbar() {
                                 size='large'
                                 aria-label='show 4 new mails'
                                 color='inherit'
+                                onClick={() => navigate(`/allTopics`)}
                             >
                                 <Typography
                                     sx={{
@@ -236,6 +258,7 @@ export default function Navbar() {
                                 size='large'
                                 aria-label='show 17 new notifications'
                                 color='inherit'
+                                onClick={() => navigate(`/about`)}
                             >
                                 <Typography
                                     sx={{

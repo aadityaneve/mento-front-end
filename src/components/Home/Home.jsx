@@ -3,12 +3,11 @@ import Navbar from '../Navbar/Navbar';
 import FooterTop from '../Footer/FooterTop';
 import FooterBottom from '../Footer/FooterBottom';
 function Home() {
-  return <>
-    <Navbar />
-    
-    <FooterTop />
-    <FooterBottom />
-  </>;
+    return (
+        <>
+            HOME
+        </>
+    );
 }
 
 export default Home;

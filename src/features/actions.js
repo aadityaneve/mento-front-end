@@ -6,7 +6,9 @@ import {
     ERROR_MESSAGE,
     SET_FILTERED_TOPICS,
     SET_ON_CLICK_TOPIC,
-    SET_ON_CLICK_TOPIC_DETAILS
+    SET_ON_CLICK_TOPIC_DETAILS,
+    SET_PROFILE,
+    REMOVE_PROFILE,
 } from './actionTypes';
 
 export const getAllTopics = () => (dispatch) => {
@@ -91,6 +93,20 @@ export const setOnClickTopic = (data) => {
 export const setOnClickTopicDetails = (data) => {
     return {
         type: SET_ON_CLICK_TOPIC_DETAILS,
+        payload: data,
+    };
+};
+
+export const setProfile = (data) => {
+    return {
+        type: SET_PROFILE,
+        payload: data,
+    };
+};
+
+export const removeProfile = (data = null) => {
+    return {
+        type: REMOVE_PROFILE,
         payload: data,
     };
 };

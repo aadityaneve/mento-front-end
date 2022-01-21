@@ -5,6 +5,8 @@ import {
     SET_FILTERED_TOPICS,
     SET_ON_CLICK_TOPIC,
     SET_ON_CLICK_TOPIC_DETAILS,
+    SET_PROFILE,
+    REMOVE_PROFILE,
 } from './actionTypes';
 
 const init = {
@@ -14,6 +16,7 @@ const init = {
     filteredTopics: [],
     onClickTopic: {},
     onClickTopicDetails: {},
+    PROFILE: {},
 };
 
 export const reducer = (state = init, { type, payload }) => {
@@ -52,6 +55,18 @@ export const reducer = (state = init, { type, payload }) => {
             return {
                 ...state,
                 onClickTopicDetails: payload,
+            };
+
+        case SET_PROFILE:
+            return {
+                ...state,
+                PROFILE: payload,
+            };
+
+        case REMOVE_PROFILE:
+            return {
+                ...state,
+                PROFILE: payload,
             };
 
         default:

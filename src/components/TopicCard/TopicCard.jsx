@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Typography, Card } from '@mui/material';
 import { setOnClickTopic } from '../../features/actions';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useNavigate } from 'react-router-dom';
 
 const TopicCard = ({ topic, matchTopic }) => {
     const { card_img, desg, heading, name, total_count } = topic;
@@ -22,9 +23,15 @@ const TopicCard = ({ topic, matchTopic }) => {
         matchTopic(allTopicsDetails, onClickTopic);
     };
 
+    const navigate = useNavigate();
+
     return (
         <Box
-            onClick={() => handleTopicClick(topic)}
+            sx={{cursor: 'pointer'}}
+            onClick={() => {
+                handleTopicClick(topic);
+                navigate(`/topicDetails`);
+            }}
             className={classes.cardStyle}
         >
             <Box className={classes.backgroundImage}></Box>
