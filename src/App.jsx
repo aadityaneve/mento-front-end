@@ -1,12 +1,17 @@
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTopics, getAllTopicsDetails } from './features/actions';
-import TopicCard from './components/TopicCard/TopicCard';
+import Home from './components/Home/Home';
 import AllTopics from './components/AllTopics/AllTopics';
-import {Profile} from './components/Profile/Profile'
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/Navbar/Navbar';
+import FooterTop from './components/Footer/FooterTop';
+import FooterBottom from './components/Footer/FooterBottom';
+import About from './components/About/About';
+import { Profile } from './components/Profile/Profile';
+import TopicDetails from './components/TopicDetails/TopicDetails';
 
 function App() {
     const { allTopics, allTopicsDetails } = useSelector((state) => state);
@@ -19,9 +24,16 @@ function App() {
 
     return (
         <div className='App'>
-            <Navbar/>
-            <AllTopics />
-            {/* <Profile/> */}
+            <Navbar />
+            <Routes>
+                <Route path='/' element={<Home />}></Route>
+                <Route path='/allTopics' element={<AllTopics />}></Route>
+                <Route path='/topicDetails' element={<TopicDetails />}></Route>
+                <Route path='/about' element={<About />}></Route>
+                <Route path='/profile' element={<Profile />}></Route>
+            </Routes>
+            <FooterTop />
+            <FooterBottom />
         </div>
     );
 }
