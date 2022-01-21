@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTopics, getAllTopicsDetails } from './features/actions';
-// import Midpart from './components/Midpart/Midpart';
-// import AllTopics from './components/AllTopics/AllTopics';
-// import Midtextbox from './components/Midtextbox/Midtextbox';
-// import Videobox from './components/Videobox/Videobox';
+import TopicCard from './components/TopicCard/TopicCard';
+import AllTopics from './components/AllTopics/AllTopics';
+import {Profile} from './components/Profile/Profile'
+import Navbar from './components/Navbar/Navbar'
 
 function App() {
     const { allTopics, allTopicsDetails } = useSelector((state) => state);
@@ -19,6 +19,9 @@ function App() {
 
     return (
         <div className='App'>
+            <Navbar/>
+            <AllTopics />
+            {/* <Profile/> */}
         </div>
     );
 }
