@@ -103,8 +103,6 @@ const AllTopics = () => {
                 ? dispatch(setOnClickTopicDetails(topicDetail))
                 : null */
         });
-
-        console.log('onClickTopicDetails:', onClickTopicDetails);
     };
 
     const titleCase = (str) => {
