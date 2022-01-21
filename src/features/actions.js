@@ -5,6 +5,8 @@ import {
     GET_ALL_TOPICS_DETAILS,
     ERROR_MESSAGE,
     SET_FILTERED_TOPICS,
+    SET_ON_CLICK_TOPIC,
+    SET_ON_CLICK_TOPIC_DETAILS
 } from './actionTypes';
 
 export const getAllTopics = () => (dispatch) => {
@@ -75,6 +77,20 @@ export const setErrorMessage = (error) => {
 export const filteredTopics = (data) => {
     return {
         type: SET_FILTERED_TOPICS,
+        payload: data,
+    };
+};
+
+export const setOnClickTopic = (data) => {
+    return {
+        type: SET_ON_CLICK_TOPIC,
+        payload: data,
+    };
+};
+
+export const setOnClickTopicDetails = (data) => {
+    return {
+        type: SET_ON_CLICK_TOPIC_DETAILS,
         payload: data,
     };
 };
