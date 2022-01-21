@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import stringSimilarity from 'string-similarity';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilteredTopics } from '../../features/actions';
+import {
+    setFilteredTopics,
+    setOnClickTopicDetails,
+} from '../../features/actions';
 import useStyles from './Styles';
 
 import {
@@ -68,13 +72,40 @@ const AllTopics = () => {
     }, [screenSize]);
     /* Getting Window Size End */
 
-    const [displayTopic, setDisplayTopic] = useState('All Videos');
+    const [displayTopic, setDisplayTopic] = useState('ALL TOPICS');
 
-    const { allTopics, allTopicsDetails, filteredTopics } = useSelector(
-        (state) => state
-    );
+    const {
+        allTopics,
+        allTopicsDetails,
+        filteredTopics,
+        onClickTopic,
+        onClickTopicDetails,
+    } = useSelector((state) => state);
+
     const dispatch = useDispatch();
     const classes = useStyles();
+
+    const matchTopic = (allTopicsDetails, onClickTopic) => {
+        allTopicsDetails?.map((topicDetail) => {
+            let similarity = stringSimilarity.compareTwoStrings(
+                onClickTopic?.heading?.toLowerCase(),
+                topicDetail?.name?.toLowerCase()
+            );
+            if (similarity > 0.6) {
+                dispatch(setOnClickTopicDetails(topicDetail));
+                // return data;
+            } else {
+                return null;
+            }
+
+            /* onClickTopic?.heading?.toLowerCase() ==
+            topicDetail?.name?.toLowerCase()
+                ? dispatch(setOnClickTopicDetails(topicDetail))
+                : null */
+        });
+
+        console.log('onClickTopicDetails:', onClickTopicDetails);
+    };
 
     const titleCase = (str) => {
         var splitStr = str.toLowerCase().split(' ');
@@ -165,10 +196,18 @@ const AllTopics = () => {
                         {displayTopic === 'All Videos' ||
                         displayTopic === 'ALL TOPICS'
                             ? allTopics.map((topic) => (
-                                  <TopicCard key={topic._id} topic={topic} />
+                                  <TopicCard
+                                      matchTopic={matchTopic}
+                                      key={topic._id}
+                                      topic={topic}
+                                  />
                               ))
                             : filteredTopics.map((topic) => (
-                                  <TopicCard key={topic._id} topic={topic} />
+                                  <TopicCard
+                                      matchTopic={matchTopic}
+                                      key={topic._id}
+                                      topic={topic}
+                                  />
                               ))}
                     </Box>
                 </Box>

@@ -166,9 +166,11 @@ export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
-                style={{ background: 'transparent' }}
-                sx={{ position: 'sticky', zIndex: '3' }}
-                position='static'
+                sx={{
+                    background: 'transparent',
+                    position: 'fixed',
+                    zIndex: '3',
+                }} //background: '#1A1D24'
             >
                 <Box sx={{ width: '93%', margin: 'auto' }}>
                     <Toolbar>

@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTopics, getAllTopicsDetails } from './features/actions';
-import TopicCard from './components/TopicCard/TopicCard';
+import FooterBox from './components/FooterBox/FooterBox';
+import FooterTop from './components/FooterTop/FooterTop';
+import Navbar from './components/Navbar/Navbar';
 import AllTopics from './components/AllTopics/AllTopics';
-import {Profile} from './components/Profile/Profile'
+import TopicDetails from './components/TopicDetails/TopicDetails';
 
 function App() {
     const { allTopics, allTopicsDetails } = useSelector((state) => state);
@@ -18,8 +20,9 @@ function App() {
 
     return (
         <div className='App'>
-            <AllTopics />
-            {/* <Profile/> */}
+            <Navbar />
+            {/* <AllTopics /> */}
+            <TopicDetails />
         </div>
     );
 }

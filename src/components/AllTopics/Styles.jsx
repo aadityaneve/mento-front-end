@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     },
 
     verticalAnimatedLine: {
-        color: 'yellow',
         '&:hover': {
             content: '',
             position: 'absolute',
