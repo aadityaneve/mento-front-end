@@ -7,6 +7,7 @@ import FooterBox from './components/FooterBox/FooterBox';
 import FooterTop from './components/FooterTop/FooterTop';
 import Navbar from './components/Navbar/Navbar';
 import AllTopics from './components/AllTopics/AllTopics';
+import TopicDetails from './components/TopicDetails/TopicDetails';
 
 function App() {
     const { allTopics, allTopicsDetails } = useSelector((state) => state);
@@ -20,9 +21,7 @@ function App() {
     return (
         <div className='App'>
             <Navbar />
-            <AllTopics />
-            <FooterTop />
-            <FooterBox />
+            <TopicDetails />            
         </div>
     );
 }
