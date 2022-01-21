@@ -3,6 +3,8 @@ import {
     GET_ALL_TOPICS_DETAILS,
     ERROR_MESSAGE,
     SET_FILTERED_TOPICS,
+    SET_ON_CLICK_TOPIC,
+    SET_ON_CLICK_TOPIC_DETAILS,
 } from './actionTypes';
 
 const init = {
@@ -10,6 +12,8 @@ const init = {
     allTopics: [],
     allTopicsDetails: [],
     filteredTopics: [],
+    onClickTopic: {},
+    onClickTopicDetails: {},
 };
 
 export const reducer = (state = init, { type, payload }) => {
@@ -36,6 +40,18 @@ export const reducer = (state = init, { type, payload }) => {
             return {
                 ...state,
                 filteredTopics: payload,
+            };
+
+        case SET_ON_CLICK_TOPIC:
+            return {
+                ...state,
+                onClickTopic: payload,
+            };
+
+        case SET_ON_CLICK_TOPIC_DETAILS:
+            return {
+                ...state,
+                onClickTopicDetails: payload,
             };
 
         default:

@@ -1,19 +1,32 @@
 import React from 'react';
 
 import useStyles from './Styles';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Typography, Card } from '@mui/material';
+import { setOnClickTopic } from '../../features/actions';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
-const TopicCard = ({
-    topic: { card_img, desg, heading, name, total_count },
-}) => {
+const TopicCard = ({ topic, matchTopic }) => {
+    const { card_img, desg, heading, name, total_count } = topic;
     const props = {
         card_img,
     };
     const classes = useStyles(props);
 
+    const { allTopicsDetails, onClickTopic } = useSelector((state) => state);
+
+    const dispatch = useDispatch();
+
+    const handleTopicClick = (topic) => {
+        dispatch(setOnClickTopic(topic));
+        matchTopic(allTopicsDetails, onClickTopic);
+    };
+
     return (
-        <Box className={classes.cardStyle}>
+        <Box
+            onClick={() => handleTopicClick(topic)}
+            className={classes.cardStyle}
+        >
             <Box className={classes.backgroundImage}></Box>
             <Button
                 sx={{
@@ -36,9 +49,7 @@ const TopicCard = ({
             >
                 {heading}
             </Typography>
-            <Box
-                className={classes.cardDetails}
-            >
+            <Box className={classes.cardDetails}>
                 <Box className={classes.mentorPhoto}></Box>
                 <Box className={classes.mentorDetails}>
                     <Typography
