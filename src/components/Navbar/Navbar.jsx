@@ -15,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import TopicIcon from '@mui/icons-material/Topic';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
@@ -62,6 +63,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+    const classes = useStyles();
+    const navigate = useNavigate();
     const { PROFILE } = useSelector((state) => state);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -140,29 +143,29 @@ export default function Navbar() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            <MenuItem onClick={() => navigate(`/allTopics`)}>
                 <IconButton
                     size='large'
                     aria-label='show 4 new mails'
                     color='inherit'
                 >
-                    <Badge badgeContent={4} color='error'>
-                        <MailIcon />
+                    <Badge color='error'>
+                        <TopicIcon />
                     </Badge>
                 </IconButton>
-                <p>Messages</p>
+                <p>All Topics</p>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={() => navigate(`/about`)}>
                 <IconButton
                     size='large'
                     aria-label='show 17 new notifications'
                     color='inherit'
                 >
-                    <Badge badgeContent={17} color='error'>
+                    <Badge color='error'>
                         <NotificationsIcon />
                     </Badge>
                 </IconButton>
-                <p>Notifications</p>
+                <p>About</p>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
@@ -179,15 +182,13 @@ export default function Navbar() {
         </Menu>
     );
 
-    const classes = useStyles();
-    const navigate = useNavigate();
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
                 sx={{
-                    background: 'transparent',
-                    position: 'fixed',
+                    background:
+                        'linear-gradient(to top, transparent 0%, black 100%);',
+                    position: 'stickey',
                     zIndex: '3',
                 }} //background: '#1A1D24'
             >
