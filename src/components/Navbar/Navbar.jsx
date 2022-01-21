@@ -176,7 +176,11 @@ export default function Navbar() {
                     aria-haspopup='true'
                     color='inherit'
                 >
-                    <AccountCircle />
+                    {PROFILE?.imageUrl ? (
+                        <Avatar alt={PROFILE?.name} src={PROFILE?.imageUrl} />
+                    ) : (
+                        <AccountCircle />
+                    )}
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
