@@ -25,6 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
 import { FaFacebookF } from 'react-icons/fa';
 import { removeProfile } from '../../features/actions';
+import { Avatar } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -124,11 +125,7 @@ export default function Navbar() {
                     handleMenuClose();
                 }}
             >
-                {PROFILE?.googleId ? (
-                    <Glogout />
-                ) : (
-                    <Glogin />
-                )}
+                {PROFILE?.googleId ? <Glogout /> : <Glogin />}
             </MenuItem>
         </Menu>
     );
@@ -215,7 +212,14 @@ export default function Navbar() {
                         aria-haspopup='true'
                         color='inherit'
                     >
-                        <AccountCircle />
+                        {PROFILE?.googleId ? (
+                            <Avatar
+                                alt='Travis Howard'
+                                src={PROFILE?.imageUrl}
+                            />
+                        ) : (
+                            <AccountCircle />
+                        )}
                     </IconButton>
                     <p>Profile</p>
                 </MenuItem>
@@ -363,12 +367,19 @@ export default function Navbar() {
                                         onClick={handleProfileMenuOpen}
                                         color='inherit'
                                     >
-                                        <AccountCircle />
+                                        {PROFILE?.googleId ? (
+                                            <Avatar
+                                                alt='Travis Howard'
+                                                src={PROFILE?.imageUrl}
+                                            />
+                                        ) : (
+                                            <AccountCircle />
+                                        )}
                                     </IconButton>
                                 ) : (
                                     <Button
                                         onClick={() => {
-                                            setPopup(true)
+                                            setPopup(true);
                                         }}
                                         variant='contained'
                                         sx={{
