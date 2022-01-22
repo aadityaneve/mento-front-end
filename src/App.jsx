@@ -12,6 +12,7 @@ import FooterBottom from './components/Footer/FooterBottom';
 import About from './components/About/About';
 import { Profile } from './components/Profile/Profile';
 import TopicDetails from './components/TopicDetails/TopicDetails';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
 function App() {
     const { allTopics, allTopicsDetails } = useSelector((state) => state);
@@ -26,11 +27,19 @@ function App() {
         <div className='App'>
             <Navbar />
             <Routes>
-                <Route path='/' element={<Home />}></Route>
-                <Route path='/allTopics' element={<AllTopics />}></Route>
-                <Route path='/topicDetails' element={<TopicDetails />}></Route>
-                <Route path='/about' element={<About />}></Route>
-                <Route path='/profile' element={<Profile />}></Route>
+                <Route exact path='/' element={<Home />} />
+                <Route exact path='/allTopics' element={<AllTopics />} />
+                <Route exact path='/topicDetails' element={<TopicDetails />} />
+                <Route exact path='/about' element={<About />} />
+                <Route
+                    exact
+                    path='/profile'
+                    element={
+                        <PrivateRoute>
+                            <Profile />
+                        </PrivateRoute>
+                    }
+                />
             </Routes>
             <FooterTop />
             <FooterBottom />
