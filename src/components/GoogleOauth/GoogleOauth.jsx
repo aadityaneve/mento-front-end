@@ -55,8 +55,8 @@ export function Glogout() {
     const onSignoutSuccess = () => {
         alert('Signout Successfully')
         dispatch(removeProfile(null));
-        setToken(false);
         navigate('/')
+        setToken(false);
     };
     return (
         <>
@@ -67,7 +67,7 @@ export function Glogout() {
                 render={(renderProps) => (
                     <button
                         onClick={renderProps.onClick}
-                        className='hover:text-orange-600 border'
+                        className='hover:text-orange-600'
                     >
                         Log Out
                     </button>

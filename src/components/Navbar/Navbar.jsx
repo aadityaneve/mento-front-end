@@ -249,6 +249,7 @@ export default function Navbar() {
     const {Token , setToken} = useContext(AuthContext)
     const [popup, setPopup] = useState(false);
 
+
     function crossbtn() {
         setPopup(false);
     }
@@ -380,6 +381,7 @@ export default function Navbar() {
                                         )}
                                     </IconButton>
                                 ) : (
+                                    <>
                                     <Button
                                         onClick={() => {
                                             setPopup(true);
@@ -392,6 +394,8 @@ export default function Navbar() {
                                     >
                                         LOGIN
                                     </Button>
+                                    {}
+                                    </>
                                 )}
                             </Box>
                             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
