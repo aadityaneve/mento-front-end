@@ -256,7 +256,8 @@ export default function Navbar() {
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar
                     sx={{
-                        background: 'transparent',
+                        background:
+                            'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);',
                         position: 'fixed',
                         zIndex: '3',
                     }} //background: '#1A1D24'
