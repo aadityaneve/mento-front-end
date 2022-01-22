@@ -246,7 +246,7 @@ export default function Navbar() {
 
     const classes = useStyles();
     const navigate = useNavigate();
-    const [Token , setToken] = useContext(AuthContext)
+    const {Token , setToken} = useContext(AuthContext)
     const [popup, setPopup] = useState(false);
 
     function crossbtn() {
