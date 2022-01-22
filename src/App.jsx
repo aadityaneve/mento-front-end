@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,23 +27,19 @@ function App() {
         <div className='App'>
             <Navbar />
             <Routes>
-                <Route path='/' exact element={<Home />}></Route>
-                <Route path='/allTopics' exact element={<AllTopics />}></Route>
+                <Route exact path='/' element={<Home />} />
+                <Route exact path='/allTopics' element={<AllTopics />} />
+                <Route exact path='/topicDetails' element={<TopicDetails />} />
+                <Route exact path='/about' element={<About />} />
                 <Route
-                    path='/topicDetails'
                     exact
-                    element={<TopicDetails />}
-                ></Route>
-                <Route path='/about' exact element={<About />}></Route>
-                <Route
                     path='/profile'
-                    exact
                     element={
                         <PrivateRoute>
                             <Profile />
                         </PrivateRoute>
                     }
-                ></Route>
+                />
             </Routes>
             <FooterTop />
             <FooterBottom />
