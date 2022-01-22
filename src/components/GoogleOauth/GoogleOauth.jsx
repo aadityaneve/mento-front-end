@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from '../Context/AuthContext';
 
 const clientId =
-    '463581391042-osrs08iros3c7poe5270p6nti71e2qba.apps.googleusercontent.com';
+    '138806710425-q200r0khjheck91qftgeevq3v907dsr2.apps.googleusercontent.com';
 
     
     export function Glogin() {
