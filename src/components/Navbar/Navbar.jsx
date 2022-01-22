@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,15 +15,17 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import Avatar from '@mui/material/Avatar';
-
+import { Button } from '@mui/material';
+import TopicIcon from '@mui/icons-material/Topic';
+import InfoIcon from '@mui/icons-material/Info';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
 import { useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
-import { FaFacebookF } from 'react-icons/fa'
-import { AuthContext } from '../Context/AuthContext';
+import { FaFacebookF } from 'react-icons/fa';
+import { removeProfile } from '../../features/actions';
+import { Avatar } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -65,10 +67,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-
-
 export default function Navbar() {
     const { PROFILE } = useSelector((state) => state);
+    const dispatch = useDispatch();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -132,6 +133,12 @@ export default function Navbar() {
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
+            }}
             anchorEl={mobileMoreAnchorEl}
             anchorOrigin={{
                 vertical: 'top',
@@ -148,6 +155,25 @@ export default function Navbar() {
         >
             <MenuItem>
                 <IconButton
+                    size='medium'
+                    sx={{ fontSize: '1rem' }}
+                    onClick={() => navigate(`/allTopics`)}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <TopicIcon sx={{ marginRight: '5px' }} />
+                        <p>ALL TOPICS</p>
+                    </Box>
+                </IconButton>
+            </MenuItem>
+
+            {/* <MenuItem>
+                <IconButton
                     size='large'
                     aria-label='show 4 new mails'
                     color='inherit'
@@ -157,54 +183,81 @@ export default function Navbar() {
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem>
                 <IconButton
-                    size='large'
-                    aria-label='show 17 new notifications'
-                    color='inherit'
+                    sx={{ fontSize: '1rem' }}
+                    size='medium'
+                    onClick={() => navigate(`/about`)}
                 >
-                    <Badge badgeContent={17} color='error'>
-                        <NotificationsIcon />
-                    </Badge>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <InfoIcon sx={{ marginRight: '5px' }} />
+                        <p>ABOUT</p>
+                    </Box>
                 </IconButton>
-                <p>Notifications</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size='large'
-                    aria-label='account of current user'
-                    aria-controls='primary-search-account-menu'
-                    aria-haspopup='true'
-                    color='inherit'
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
+
+            {PROFILE?.googleId ? (
+                <MenuItem onClick={handleProfileMenuOpen}>
+                    <IconButton
+                        size='large'
+                        aria-label='account of current user'
+                        aria-controls='primary-search-account-menu'
+                        aria-haspopup='true'
+                        color='inherit'
+                    >
+                        {PROFILE?.googleId ? (
+                            <Avatar
+                                alt='Travis Howard'
+                                src={PROFILE?.imageUrl}
+                            />
+                        ) : (
+                            <AccountCircle />
+                        )}
+                    </IconButton>
+                    <p>Profile</p>
+                </MenuItem>
+            ) : (
+                <MenuItem>
+                    <Button
+                        onClick={() => {
+                            setPopup(true);
+                        }}
+                        variant='contained'
+                        sx={{
+                            background:
+                                'linear-gradient(226deg, #f68c26 0%,  #ec1a5b 100%)',
+                        }}
+                    >
+                        LOGIN
+                    </Button>
+                </MenuItem>
+            )}
         </Menu>
     );
 
     const classes = useStyles();
     const navigate = useNavigate();
 
-
-
-    const { Token, setToken } = useContext(AuthContext);
-    const [popup, setPopup] = useState(false)
-
+    const [popup, setPopup] = useState(false);
 
     function crossbtn() {
-        setPopup(false)
+        setPopup(false);
     }
 
     return (
         <>
-
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar
                     sx={{
-                        background: 'transparent',
+                        background:
+                            'linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);',
                         position: 'fixed',
                         zIndex: '3',
                     }} //background: '#1A1D24'
@@ -260,7 +313,10 @@ export default function Navbar() {
                                 >
                                     <Typography
                                         sx={{
-                                            display: { xs: 'none', md: 'block' },
+                                            display: {
+                                                xs: 'none',
+                                                md: 'block',
+                                            },
                                             fontSize: '0.8rem',
                                         }}
                                         variant='h6'
@@ -280,7 +336,10 @@ export default function Navbar() {
                                 >
                                     <Typography
                                         sx={{
-                                            display: { xs: 'none', md: 'block' },
+                                            display: {
+                                                xs: 'none',
+                                                md: 'block',
+                                            },
                                             fontSize: '0.8rem',
                                         }}
                                         variant='h6'
@@ -292,22 +351,46 @@ export default function Navbar() {
                                 <NotificationsIcon />
                             </Badge> */}
                                 </IconButton>
-                                {(!Token) ? <div>
-                                    <button onClick={() => { setPopup(true) }} className='text-white bg-[#d1521f] px-3 py-2 font-bold rounded-md' >LOGIN</button>
-                                </div> :
-                                 <IconButton
-                                    sx={{ display: { xs: 'none', md: 'block' } }}
-                                    size='large'
-                                    edge='end'
-                                    aria-label='account of current user'
-                                    aria-controls={menuId}
-                                    aria-haspopup='true'
-                                    onClick={handleProfileMenuOpen}
-                                    color='inherit'
-                                >
-                                    <Avatar alt="Travis Howard" src={PROFILE.imageUrl} />
-                                    
-                                </IconButton> }
+
+                                {PROFILE?.googleId ? (
+                                    <IconButton
+                                        sx={{
+                                            display: {
+                                                xs: 'none',
+                                                md: 'block',
+                                            },
+                                        }}
+                                        size='large'
+                                        edge='end'
+                                        aria-label='account of current user'
+                                        aria-controls={menuId}
+                                        aria-haspopup='true'
+                                        onClick={handleProfileMenuOpen}
+                                        color='inherit'
+                                    >
+                                        {PROFILE?.googleId ? (
+                                            <Avatar
+                                                alt='Travis Howard'
+                                                src={PROFILE?.imageUrl}
+                                            />
+                                        ) : (
+                                            <AccountCircle />
+                                        )}
+                                    </IconButton>
+                                ) : (
+                                    <Button
+                                        onClick={() => {
+                                            setPopup(true);
+                                        }}
+                                        variant='contained'
+                                        sx={{
+                                            background:
+                                                'linear-gradient(226deg, #f68c26 0%,  #ec1a5b 100%)',
+                                        }}
+                                    >
+                                        LOGIN
+                                    </Button>
+                                )}
                             </Box>
                             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                                 <IconButton
@@ -341,35 +424,49 @@ export default function Navbar() {
 
             {/* this area is for popup menu */}
 
-            {(!Token) && (popup) ? <div className='border mt-20  absolute ml-[20%] w-3/5 h-3/5  z-10' >
-                <div className='bg-gray-700  flex w-full h-full'>
-                    <div>
-                        <img src="https://d1tthr7pv14hhy.cloudfront.net/Images/Courses/Film-Making/Finalnitish.jpg" className='h-full' />
-                    </div>
-                    <div className='bg-white grow h-full'>
-                        <button onClick={() => { crossbtn() }} className='absolute ml-[25%] mt-4 text-lg' >X</button>
-                        <div className='w-full h-full flex flex-col gap-y-3 justify-center place-self-center'>
-
-                            <div className='text-3xl' >Welcome Back!</div>
-                            <div className='text-base'>LOG IN WITH</div>
-                            <div className='flex justify-center gap-x-4'>
-                                <div className='flex items-center gap-x-2 border border-black text-lg font-semibold text-white px-2 rounded-md bg-[#3b5997] cursor-pointer hover:bg-[#254179]' >
-                                    <FaFacebookF className='w-7 h-7' />
-                                    <div>FACEBOOK</div>
+            {popup ? (
+                <div className='border mt-20  absolute ml-[20%] w-3/5 h-3/5  z-10'>
+                    <div className='bg-gray-700  flex w-full h-full'>
+                        <div>
+                            <img
+                                src='https://d1tthr7pv14hhy.cloudfront.net/Images/Courses/Film-Making/Finalnitish.jpg'
+                                className='h-full'
+                            />
+                        </div>
+                        <div className='bg-white grow h-full'>
+                            <button
+                                onClick={() => {
+                                    crossbtn();
+                                }}
+                                className='absolute ml-[25%] mt-4 text-lg'
+                            >
+                                X
+                            </button>
+                            <div className='w-full h-full flex flex-col gap-y-3 justify-center place-self-center'>
+                                <div className='text-3xl'>Welcome Back!</div>
+                                <div className='text-base'>LOG IN WITH</div>
+                                <div className='flex justify-center gap-x-4'>
+                                    <div className='flex items-center gap-x-2 border border-black text-lg font-semibold text-white px-2 rounded-md bg-[#3b5997] cursor-pointer hover:bg-[#254179]'>
+                                        <FaFacebookF className='w-7 h-7' />
+                                        <div>FACEBOOK</div>
+                                    </div>
+                                    <div>
+                                        <Glogin />
+                                    </div>
                                 </div>
-                                <div><Glogin />
+                                <div className='text-gray-600'>
+                                    Not a member yet? SIGN UP
                                 </div>
                             </div>
-                            <div className='text-gray-600' >Not a member yet? SIGN UP</div>
-
                         </div>
                     </div>
                 </div>
+            ) : null}
 
-            </div> : null}
-
-
-
+            {/* <div className='mt-20'>
+                <button onClick={()=>{setPopup(true)}} className='text-white bg-[#d1521f] px-3 py-2 font-bold rounded-md' >LOGIN</button>
+            </div>
+            */}
         </>
     );
 }
