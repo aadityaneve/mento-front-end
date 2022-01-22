@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,8 +27,7 @@ function App() {
         <div className='App'>
             <Navbar />
             <Routes>
-                <Home />
-                <Route path='/' element={<Home />}></Route>
+                <Route path='' element={<Home />}></Route>
                 <Route path='/allTopics' element={<AllTopics />}></Route>
                 <Route path='/topicDetails' element={<TopicDetails />}></Route>
                 <Route path='/about' element={<About />}></Route>
