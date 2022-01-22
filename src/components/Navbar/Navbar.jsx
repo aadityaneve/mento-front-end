@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,12 +15,15 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Avatar from '@mui/material/Avatar';
+
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
 import { useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
 import { FaFacebookF } from 'react-icons/fa'
+import { AuthContext } from '../Context/AuthContext';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -185,13 +188,14 @@ export default function Navbar() {
     const classes = useStyles();
     const navigate = useNavigate();
 
-    
-
-    const [popup,setPopup] = useState(false);
 
 
-    function crossbtn(){
-    setPopup(false)
+    const { Token, setToken } = useContext(AuthContext);
+    const [popup, setPopup] = useState(false)
+
+
+    function crossbtn() {
+        setPopup(false)
     }
 
     return (
@@ -288,7 +292,10 @@ export default function Navbar() {
                                 <NotificationsIcon />
                             </Badge> */}
                                 </IconButton>
-                                <IconButton
+                                {(!Token) ? <div>
+                                    <button onClick={() => { setPopup(true) }} className='text-white bg-[#d1521f] px-3 py-2 font-bold rounded-md' >LOGIN</button>
+                                </div> :
+                                 <IconButton
                                     sx={{ display: { xs: 'none', md: 'block' } }}
                                     size='large'
                                     edge='end'
@@ -298,9 +305,9 @@ export default function Navbar() {
                                     onClick={handleProfileMenuOpen}
                                     color='inherit'
                                 >
-                                    <AccountCircle />
+                                    <Avatar alt="Travis Howard" src={PROFILE.imageUrl} />
                                     
-                                </IconButton>
+                                </IconButton> }
                             </Box>
                             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                                 <IconButton
@@ -332,15 +339,15 @@ export default function Navbar() {
                 {renderMenu}
             </Box>
 
-        {/* this area is for popup menu */}
+            {/* this area is for popup menu */}
 
-            {(popup) ? <div className='border mt-20  absolute ml-[20%] w-3/5 h-3/5  z-10' >
+            {(!Token) && (popup) ? <div className='border mt-20  absolute ml-[20%] w-3/5 h-3/5  z-10' >
                 <div className='bg-gray-700  flex w-full h-full'>
                     <div>
                         <img src="https://d1tthr7pv14hhy.cloudfront.net/Images/Courses/Film-Making/Finalnitish.jpg" className='h-full' />
                     </div>
                     <div className='bg-white grow h-full'>
-                        <button onClick={()=>{crossbtn()}} className='absolute ml-[25%] mt-4 text-lg' >X</button>
+                        <button onClick={() => { crossbtn() }} className='absolute ml-[25%] mt-4 text-lg' >X</button>
                         <div className='w-full h-full flex flex-col gap-y-3 justify-center place-self-center'>
 
                             <div className='text-3xl' >Welcome Back!</div>
@@ -361,9 +368,7 @@ export default function Navbar() {
 
             </div> : null}
 
-            <div className='mt-20'>
-                <button onClick={()=>{setPopup(true)}} className='text-white bg-[#d1521f] px-3 py-2 font-bold rounded-md' >LOGIN</button>
-            </div>
+
 
         </>
     );
