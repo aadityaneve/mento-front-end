@@ -27,12 +27,17 @@ function App() {
         <div className='App'>
             <Navbar />
             <Routes>
-                <Route path='' element={<Home />}></Route>
-                <Route path='/allTopics' element={<AllTopics />}></Route>
-                <Route path='/topicDetails' element={<TopicDetails />}></Route>
-                <Route path='/about' element={<About />}></Route>
+                <Route path='/' exact element={<Home />}></Route>
+                <Route path='/allTopics' exact element={<AllTopics />}></Route>
+                <Route
+                    path='/topicDetails'
+                    exact
+                    element={<TopicDetails />}
+                ></Route>
+                <Route path='/about' exact element={<About />}></Route>
                 <Route
                     path='/profile'
+                    exact
                     element={
                         <PrivateRoute>
                             <Profile />
