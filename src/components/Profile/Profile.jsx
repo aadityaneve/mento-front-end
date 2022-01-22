@@ -44,14 +44,13 @@ export function Profile() {
     function cross(id){
         setUsers(users.filter(e => e.id !== id));
     }
-    return <div className="bg-hero py-10 bg-repeat-x " style={{ backdropFilter: 'brightness(.1)' }}>
+    return <div className="pt-20 bg-[url('https://www.mento.co.in/assets/all-topics-bg-c70ac523da68e4c48726cc16261ddb6d5b08a7f43fa4dc0e78f5488466e78514.png')] py-10 bg-repeat-x " style={{ backdropFilter: 'brightness(.1)' }}>
         <div className='my-20'>
             <img src={PROFILE.imageUrl} alt="image" className=" w-32 h-32 border-2 rounded-full mx-auto my-6" />
             <div className=" flex justify-center text-6xl  font-semibold " >
                 <h1 className="text-white" > Welcome &nbsp;</h1> <p style={{ color: '#f36f21' }} >{PROFILE.name}! </p>
             </div>
         </div>
-        <div className="" ><Glogin/></div>
         <div className='w-5/6 border bg-white mb-12 mx-auto rounded-lg'>
             <div className='flex ml-16 mt-4' >
                 <button onClick={() => { setMylearn(true) }} className='font-bold mr-12 text-gray-400  hover:underline decoration-orange-600 hover:text-black' style={{ textUnderlineOffset: '20.6px', textDecorationThickness: '5px' }} >MY LEARN</button>
