@@ -103,8 +103,6 @@ const AllTopics = () => {
                 ? dispatch(setOnClickTopicDetails(topicDetail))
                 : null */
         });
-
-        console.log('onClickTopicDetails:', onClickTopicDetails);
     };
 
     const titleCase = (str) => {
@@ -130,7 +128,7 @@ const AllTopics = () => {
     return (
         <>
             {screenSize.dynamicWidth <= 960 ? (
-                <Box>
+                <Box sx={{ paddingTop: '60px' }}>
                     <FormControl sx={{ m: 1, width: 300 }}>
                         <Select
                             sx={{
@@ -159,7 +157,7 @@ const AllTopics = () => {
                     </FormControl>
                 </Box>
             ) : null}
-            <Box className={classes.root}>
+            <Box sx={{ paddingTop: '60px' }} className={classes.root}>
                 <Box className={classes.topicsBox}>
                     {screenSize.dynamicWidth <= 960
                         ? null

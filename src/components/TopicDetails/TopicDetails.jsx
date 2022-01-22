@@ -8,13 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFilteredTopics } from '../../features/actions';
 import VideoPanel from '../VideoPanel/VideoPanel';
 import AboutMentor from '../AboutMentor/AboutMentor';
-import FooterBox from '../FooterBox/FooterBox';
-import FooterTop from './../FooterTop/FooterTop';
 
 const TopicDetails = () => {
-    const { allTopics, allTopicsDetails, filteredTopics, onClickTopic, onClickTopicDetails } =
-        useSelector((state) => state);
+    const {
+        allTopics,
+        allTopicsDetails,
+        filteredTopics,
+        onClickTopic,
+        onClickTopicDetails,
+    } = useSelector((state) => state);
     const dispatch = useDispatch();
+
+    const handleFollow = () => {
+        console.log('onClickTopic:', onClickTopic);
+    };
 
     return (
         <Box sx={{ marginTop: '0px', color: 'white' }}>
@@ -22,8 +29,7 @@ const TopicDetails = () => {
                 sx={{
                     width: '100%',
                     // height: '500vh',
-                    backgroundImage:
-                        `url(${onClickTopic.card_img})`,
+                    backgroundImage: `url(${onClickTopic.card_img})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: '0 0',
@@ -282,8 +288,7 @@ const TopicDetails = () => {
                                         width: '60px',
                                         height: '60px',
                                         borderRadius: '50%',
-                                        backgroundImage:
-                                            `url(${onClickTopic.card_img})`,
+                                        backgroundImage: `url(${onClickTopic.card_img})`,
                                         backgroundSize: 'cover',
                                         backgroundRepeat: 'no-repeat',
                                         backgroundPosition: '0 0',
@@ -331,6 +336,7 @@ const TopicDetails = () => {
                                         }}
                                     >
                                         <Button
+                                            onClick={() => handleFollow()}
                                             sx={{
                                                 borderWidth: '2px',
                                                 borderColor: '#0099FF',
@@ -409,8 +415,6 @@ const TopicDetails = () => {
                     </Box>
                 </Box>
             </Box>
-            <FooterTop />
-            <FooterBox />
         </Box>
     );
 };
