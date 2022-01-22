@@ -334,8 +334,8 @@ export default function Navbar() {
 
         {/* this area is for popup menu */}
 
-            {(popup) ? <div className='border mt-20 absolute ml-[20%] w-3/5 h-3/5  bg-red-700 z-10' >
-                <div className='bg-gray-700 flex w-full h-full'>
+            {(popup) ? <div className='border mt-20  absolute ml-[20%] w-3/5 h-3/5  z-10' >
+                <div className='bg-gray-700  flex w-full h-full'>
                     <div>
                         <img src="https://d1tthr7pv14hhy.cloudfront.net/Images/Courses/Film-Making/Finalnitish.jpg" className='h-full' />
                     </div>
