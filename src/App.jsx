@@ -27,7 +27,8 @@ function App() {
         <div className='App'>
             <Navbar />
             <Routes>
-                <Route exact path='/' element={<Home />}></Route>
+                <Home />
+                <Route path='/' element={<Home />}></Route>
                 <Route path='/allTopics' element={<AllTopics />}></Route>
                 <Route path='/topicDetails' element={<TopicDetails />}></Route>
                 <Route path='/about' element={<About />}></Route>
