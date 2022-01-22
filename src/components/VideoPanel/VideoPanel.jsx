@@ -24,7 +24,8 @@ const VideoPanel = ({ video: { name, desc, duration } }) => {
                 <Box
                     sx={{
                         backgroundImage: `url(${onClickTopic.card_img})`,
-                        width: '25vw',
+                        width: '200px',
+                        height: '180px',
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: '0 0',
