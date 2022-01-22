@@ -26,6 +26,8 @@ import useStyles from './Styles';
 import { FaFacebookF } from 'react-icons/fa';
 import { removeProfile } from '../../features/actions';
 import { Avatar } from '@mui/material';
+import { AuthContext } from '../Context/AuthContext';
+import { useContext } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -244,7 +246,7 @@ export default function Navbar() {
 
     const classes = useStyles();
     const navigate = useNavigate();
-
+    const [Token , setToken] = useContext(AuthContext)
     const [popup, setPopup] = useState(false);
 
     function crossbtn() {
@@ -424,7 +426,7 @@ export default function Navbar() {
 
             {/* this area is for popup menu */}
 
-            {popup ? (
+            {(popup) && (!Token) ? (
                 <div className='border mt-20  absolute ml-[20%] w-3/5 h-3/5  z-10'>
                     <div className='bg-gray-700  flex w-full h-full'>
                         <div>
