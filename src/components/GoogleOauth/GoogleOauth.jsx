@@ -1,7 +1,7 @@
 import React, { useState ,useContext} from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { TiSocialGooglePlus } from 'react-icons/ti';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setProfile, removeProfile } from '../../features/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from '../Context/AuthContext';
@@ -49,12 +49,14 @@ const clientId =
 
 export function Glogout() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {Token,setToken} = useContext(AuthContext);
 
     const onSignoutSuccess = () => {
         alert('Signout Successfully')
         dispatch(removeProfile(null));
         setToken(false);
+        navigate('/')
     };
     return (
         <>
