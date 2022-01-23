@@ -20,7 +20,7 @@ import TopicIcon from '@mui/icons-material/Topic';
 import InfoIcon from '@mui/icons-material/Info';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
+// import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
 import { useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
 import { FaFacebookF } from 'react-icons/fa';
@@ -127,7 +127,8 @@ export default function Navbar() {
                     handleMenuClose();
                 }}
             >
-                {PROFILE?.googleId ? <Glogout /> : <Glogin />}
+                {PROFILE?.googleId ? null : null}
+                {/* {PROFILE?.googleId ? <Glogout /> : <Glogin />} */}
             </MenuItem>
         </Menu>
     );
@@ -457,7 +458,7 @@ export default function Navbar() {
                                         <div>FACEBOOK</div>
                                     </div>
                                     <div>
-                                        <Glogin />
+                                        {/* <Glogin /> */}
                                     </div>
                                 </div>
                                 <div className='text-gray-600'>
