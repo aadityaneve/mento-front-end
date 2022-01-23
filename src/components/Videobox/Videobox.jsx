@@ -107,7 +107,6 @@ function Videobox() {
                             muted={true}
                             width='100%'
                             height='400px'
-                            borderRadius='50%'
                         />
                     </Box>
                 </Grid>

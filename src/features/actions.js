@@ -17,7 +17,6 @@ export const getAllTopics = () => (dispatch) => {
         .then((response) => {
             dispatch(setAllTopics(response.data));
             dispatch(setErrorMessage(null));
-            console.log(response.data);
         })
         .catch((error) => {
             dispatch(setErrorMessage(error.message));
@@ -31,7 +30,6 @@ export const getAllTopicsDetails = () => (dispatch) => {
         .then((response) => {
             dispatch(setAllTopicsDetails(response.data));
             dispatch(setErrorMessage(null));
-            console.log(response.data);
         })
         .catch((error) => {
             dispatch(setErrorMessage(error.message));
