@@ -15,7 +15,7 @@ import TopicDetails from './components/TopicDetails/TopicDetails';
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
 function App() {
-    const { allTopics, allTopicsDetails } = useSelector((state) => state);
+    // const { allTopics, allTopicsDetails } = useSelector((state) => state);
     const dispatch = useDispatch();
 
     useEffect(() => {
