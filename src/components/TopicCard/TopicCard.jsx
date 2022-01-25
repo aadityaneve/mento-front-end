@@ -30,7 +30,7 @@ const TopicCard = ({ topic, matchTopic }) => {
             sx={{cursor: 'pointer'}}
             onClick={() => {
                 handleTopicClick(topic);
-                navigate(`mento-front-end/topicDetails`);
+                navigate(`/mento-front-end/topicDetails`);
             }}
             className={classes.cardStyle}
         >
