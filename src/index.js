@@ -6,7 +6,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from './store/store';
-import { AuthContextProvider } from './components/Context/AuthContext'
+import { AuthContextProvider } from './components/Context/AuthContext';
 
 ReactDOM.render(
     <React.StrictMode>

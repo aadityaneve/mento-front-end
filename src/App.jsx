@@ -27,13 +27,12 @@ function App() {
         <div className='App'>
             <Navbar />
             <Routes>
-                <Route exact path='/' element={<Home />} />
-                <Route exact path='/allTopics' element={<AllTopics />} />
-                <Route exact path='/topicDetails' element={<TopicDetails />} />
-                <Route exact path='/about' element={<About />} />
+                <Route exact path='/mento-front-end' element={<Home />} />
+                <Route path='mento-front-end/allTopics' element={<AllTopics />} />
+                <Route path='mento-front-end/topicDetails' element={<TopicDetails />} />
+                <Route path='mento-front-end/about' element={<About />} />
                 <Route
-                    exact
-                    path='/profile'
+                    path='mento-front-end/profile'
                     element={
                         <PrivateRoute>
                             <Profile />

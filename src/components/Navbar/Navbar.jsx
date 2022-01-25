@@ -20,7 +20,7 @@ import TopicIcon from '@mui/icons-material/Topic';
 import InfoIcon from '@mui/icons-material/Info';
 
 import { useSelector, useDispatch } from 'react-redux';
-// import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
+import { Glogin, Glogout } from '../GoogleOauth/GoogleOauth';
 import { useNavigate } from 'react-router-dom';
 import useStyles from './Styles';
 import { FaFacebookF } from 'react-icons/fa';
@@ -117,7 +117,7 @@ export default function Navbar() {
             <MenuItem
                 onClick={() => {
                     handleMenuClose();
-                    navigate(`/profile`);
+                    navigate(`mento-front-end/profile`);
                 }}
             >
                 My Profile
@@ -127,8 +127,8 @@ export default function Navbar() {
                     handleMenuClose();
                 }}
             >
-                {PROFILE?.googleId ? null : null}
-                {/* {PROFILE?.googleId ? <Glogout /> : <Glogin />} */}
+                {/* {PROFILE?.googleId ? null : null} */}
+                {PROFILE?.googleId ? <Glogout /> : <Glogin />}
             </MenuItem>
         </Menu>
     );
@@ -160,7 +160,7 @@ export default function Navbar() {
                 <IconButton
                     size='medium'
                     sx={{ fontSize: '1rem' }}
-                    onClick={() => navigate(`/allTopics`)}
+                    onClick={() => navigate(`mento-front-end/allTopics`)}
                 >
                     <Box
                         sx={{
@@ -191,7 +191,7 @@ export default function Navbar() {
                 <IconButton
                     sx={{ fontSize: '1rem' }}
                     size='medium'
-                    onClick={() => navigate(`/about`)}
+                    onClick={() => navigate(`mento-front-end/about`)}
                 >
                     <Box
                         sx={{
@@ -270,7 +270,7 @@ export default function Navbar() {
                         <Toolbar>
                             <img
                                 style={{ cursor: 'pointer' }}
-                                onClick={() => navigate(`/`)}
+                                onClick={() => navigate(`mento-front-end/`)}
                                 className={classes.logoStyle}
                                 alt='logo'
                                 src='https://www.mento.co.in/assets/logo-e65920660caecc5be1d6b1757278bcb5745b83cfbf08d0dcdc5cd30bead06334.svg'
@@ -313,7 +313,7 @@ export default function Navbar() {
                                     size='large'
                                     aria-label='show 4 new mails'
                                     color='inherit'
-                                    onClick={() => navigate(`/allTopics`)}
+                                    onClick={() => navigate(`mento-front-end/allTopics`)}
                                 >
                                     <Typography
                                         sx={{
@@ -336,7 +336,7 @@ export default function Navbar() {
                                     size='large'
                                     aria-label='show 17 new notifications'
                                     color='inherit'
-                                    onClick={() => navigate(`/about`)}
+                                    onClick={() => navigate(`mento-front-end/about`)}
                                 >
                                     <Typography
                                         sx={{
@@ -458,7 +458,7 @@ export default function Navbar() {
                                         <div>FACEBOOK</div>
                                     </div>
                                     <div>
-                                        {/* <Glogin /> */}
+                                        <Glogin />
                                     </div>
                                 </div>
                                 <div className='text-gray-600'>
