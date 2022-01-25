@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/mento-front-end/static/css/main.8ce505cc.css",
-    "main.js": "/mento-front-end/static/js/main.b3637aef.js",
+    "main.js": "/mento-front-end/static/js/main.f5cb62ee.js",
     "index.html": "/mento-front-end/index.html",
     "main.8ce505cc.css.map": "/mento-front-end/static/css/main.8ce505cc.css.map",
-    "main.b3637aef.js.map": "/mento-front-end/static/js/main.b3637aef.js.map"
+    "main.f5cb62ee.js.map": "/mento-front-end/static/js/main.f5cb62ee.js.map"
   },
   "entrypoints": [
     "static/css/main.8ce505cc.css",
-    "static/js/main.b3637aef.js"
+    "static/js/main.f5cb62ee.js"
   ]
 }
