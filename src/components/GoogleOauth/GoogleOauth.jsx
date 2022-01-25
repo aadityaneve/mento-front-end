@@ -1,4 +1,4 @@
-import React, { useState ,useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { TiSocialGooglePlus } from 'react-icons/ti';
 import { useNavigate } from 'react-router-dom';
@@ -9,16 +9,15 @@ import { AuthContext } from '../Context/AuthContext';
 const clientId =
     '138806710425-q200r0khjheck91qftgeevq3v907dsr2.apps.googleusercontent.com';
 
-    
-    export function Glogin() {
-    const {Token,setToken} = useContext(AuthContext);
+export function Glogin() {
+    const { Token, setToken } = useContext(AuthContext);
     const dispatch = useDispatch();
     const Navigate = useNavigate();
 
     const onLoginSuccess = (res) => {
         // console.log('Login Success:', res.profileObj);
         dispatch(setProfile(res.profileObj));
-        setToken(true)
+        setToken(true);
     };
 
     const onLoginFailure = (res) => {
@@ -50,14 +49,15 @@ const clientId =
 export function Glogout() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {Token,setToken} = useContext(AuthContext);
+    const { Token, setToken } = useContext(AuthContext);
 
     const onSignoutSuccess = () => {
-        alert('Signout Successfully')
+        alert('Signout Successfully');
         dispatch(removeProfile(null));
-        navigate('/')
         setToken(false);
+        navigate(`mento-front-end/`);
     };
+
     return (
         <>
             <GoogleLogout

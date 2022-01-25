@@ -70,6 +70,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+    const classes = useStyles();
+    const navigate = useNavigate();
+    const { Token, setToken } = useContext(AuthContext);
+    const [popup, setPopup] = useState(false);
+
+    function crossbtn() {
+        setPopup(false);
+    }
+
     const { PROFILE } = useSelector((state) => state);
     const dispatch = useDispatch();
 
@@ -125,6 +134,7 @@ export default function Navbar() {
             <MenuItem
                 onClick={() => {
                     handleMenuClose();
+                    navigate(`mento-front-end/`)
                 }}
             >
                 {/* {PROFILE?.googleId ? null : null} */}
@@ -245,16 +255,6 @@ export default function Navbar() {
         </Menu>
     );
 
-    const classes = useStyles();
-    const navigate = useNavigate();
-    const {Token , setToken} = useContext(AuthContext)
-    const [popup, setPopup] = useState(false);
-
-
-    function crossbtn() {
-        setPopup(false);
-    }
-
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -313,7 +313,9 @@ export default function Navbar() {
                                     size='large'
                                     aria-label='show 4 new mails'
                                     color='inherit'
-                                    onClick={() => navigate(`mento-front-end/allTopics`)}
+                                    onClick={() =>
+                                        navigate(`mento-front-end/allTopics`)
+                                    }
                                 >
                                     <Typography
                                         sx={{
@@ -336,7 +338,9 @@ export default function Navbar() {
                                     size='large'
                                     aria-label='show 17 new notifications'
                                     color='inherit'
-                                    onClick={() => navigate(`mento-front-end/about`)}
+                                    onClick={() =>
+                                        navigate(`mento-front-end/about`)
+                                    }
                                 >
                                     <Typography
                                         sx={{
@@ -383,19 +387,18 @@ export default function Navbar() {
                                     </IconButton>
                                 ) : (
                                     <>
-                                    <Button
-                                        onClick={() => {
-                                            setPopup(true);
-                                        }}
-                                        variant='contained'
-                                        sx={{
-                                            background:
-                                                'linear-gradient(226deg, #f68c26 0%,  #ec1a5b 100%)',
-                                        }}
-                                    >
-                                        LOGIN
-                                    </Button>
-                                    {}
+                                        <Button
+                                            onClick={() => {
+                                                setPopup(true);
+                                            }}
+                                            variant='contained'
+                                            sx={{
+                                                background:
+                                                    'linear-gradient(226deg, #f68c26 0%,  #ec1a5b 100%)',
+                                            }}
+                                        >
+                                            LOGIN
+                                        </Button>
                                     </>
                                 )}
                             </Box>
@@ -431,7 +434,7 @@ export default function Navbar() {
 
             {/* this area is for popup menu */}
 
-            {(popup) && (!Token) ? (
+            {popup && !Token ? (
                 <div className='border mt-20  absolute ml-[20%] w-3/5 h-3/5  z-10'>
                     <div className='bg-gray-700  flex w-full h-full'>
                         <div>
